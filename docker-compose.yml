@@ -1,0 +1,63 @@
+version: "3.7"
+
+services:
+  mongo:
+    image: mongo
+    hostname: mongo
+    environment:
+      MONGO_INITDB_DATABASE: strapi
+    ports:
+      - 27017:27017
+    expose:
+      - 27017
+    volumes:
+      - mongodata:/data/db
+
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+    depends_on:
+      - back
+      - front
+    volumes:
+      - ./compose/nginx/nginx.conf:/etc/nginx/nginx.conf
+
+  back:
+    container_name: back
+    build:
+      context: .
+      dockerfile: ./compose/back/Dockerfile-dev
+    command: /start-dev.sh
+    environment:
+      - NODE_ENV=development
+      - DATABASE_CLIENT=mongo
+      - DATABASE_HOST=mongo
+      - DATABASE_PORT=27017
+      - DATABASE_NAME=strapi
+    depends_on:
+      - mongo
+    ports:
+      - 1337:1337
+    volumes:
+      - ./back/:/home/service/back/
+      - back_node_modules:/home/service/back/node_modules/
+
+  front:
+    container_name: front
+    build:
+      context: .
+      dockerfile: ./compose/front/Dockerfile-dev
+    command: /start-dev.sh
+    environment:
+      - NODE_ENV=development
+    ports:
+      - 3000:3000
+    volumes:
+      - ./front/:/home/service/front/
+      - front_node_modules:/home/service/front/node_modules/
+
+volumes:
+  mongodata:
+  back_node_modules:
+  front_node_modules:

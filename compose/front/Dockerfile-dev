@@ -1,0 +1,6 @@
+FROM node:12.16.1
+
+WORKDIR /home/service/front
+
+ADD compose/front/start-dev.sh /start-dev.sh
+RUN chmod +x /*.sh
