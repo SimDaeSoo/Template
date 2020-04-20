@@ -24,7 +24,6 @@ services:
       - ./compose/nginx/nginx.conf:/etc/nginx/nginx.conf
 
   back:
-    container_name: back
     build:
       context: .
       dockerfile: ./compose/back/Dockerfile-dev
@@ -44,7 +43,6 @@ services:
       - back_node_modules:/home/service/back/node_modules/
 
   front:
-    container_name: front
     build:
       context: .
       dockerfile: ./compose/front/Dockerfile-dev
