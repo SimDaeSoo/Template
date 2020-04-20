@@ -27,7 +27,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/back/Dockerfile-dev
-    command: /start-dev.sh
+    command: sh /start-dev.sh
     environment:
       - NODE_ENV=development
       - DATABASE_CLIENT=mongo
@@ -46,7 +46,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/front/Dockerfile-dev
-    command: /start-dev.sh
+    command: sh /start-dev.sh
     environment:
       - NODE_ENV=development
     ports:

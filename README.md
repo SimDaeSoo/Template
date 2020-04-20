@@ -8,8 +8,16 @@ Default template of creating basic web service
 - 27017 Port - MongoDB Server  
 
 ## How To Run
+### Mac OSX & Linux
 ```shell
-# service running
+# just typping docker-compose up! then service be running
+$ docker-compose up
+```  
+
+### Windows
+```shell
+# please change shell file type 'CRLF' to 'LF'
+# show this - https://blog.thecraftingstrider.net/posts/tech/2019.09/vscode-line-endings-and-bash-script/ 
 $ docker-compose up
 ```
 
