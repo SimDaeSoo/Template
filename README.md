@@ -5,6 +5,7 @@ Default template of creating basic web service
 - 80 Port - NginX Server  
 - 1337 Port - StrAPI Server  
 - 3000 Port - Next.js Server  
+- 3306 Port - MySQL Server(Default DB)  
 - 27017 Port - MongoDB Server  
 
 ## How To Run
