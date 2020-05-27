@@ -2,19 +2,17 @@ module.exports = ({ env }) => ({
   defaultConnection: 'default',
   connections: {
     default: {
-      connector: 'mongoose',
+      connector: 'bookshelf',
       settings: {
-        host: env('DATABASE_HOST', 'mongo'),
-        srv: env.bool('DATABASE_SRV', false),
-        port: env.int('DATABASE_PORT', 27017),
+        client: 'mysql',
+        host: env('DATABASE_HOST', 'mysql'),
+        port: env.int('DATABASE_PORT', 3306),
         database: env('DATABASE_NAME', 'strapi'),
-        username: env('DATABASE_USERNAME', ''),
-        password: env('DATABASE_PASSWORD', ''),
-      },
-      options: {
-        authenticationDatabase: env('AUTHENTICATION_DATABASE', null),
+        username: env('DATABASE_USERNAME', 'daesoo94'),
+        password: env('DATABASE_PASSWORD', 'vndtkstla2'),
         ssl: env.bool('DATABASE_SSL', false),
       },
+      options: {}
     },
   },
 });

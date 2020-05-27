@@ -1,15 +1,30 @@
 version: "3.7"
 
 services:
-  mongo:
-    image: mongo
-    hostname: mongo
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     environment:
-      MONGO_INITDB_DATABASE: strapi
-    ports:
-      - 27017:27017
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: daesoo94
+      MYSQL_PASSWORD: vndtkstla2
+      MYSQL_DATABASE: strapi
     volumes:
-      - mongodata:/data/db
+      - mysqldata:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  # This MongoDB can use but default database is MySQL 
+  # mongo:
+  #   image: mongo
+  #   hostname: mongo
+  #   environment:
+  #     MONGO_INITDB_DATABASE: strapi
+  #   ports:
+  #     - 27017:27017
+  #   volumes:
+  #     - mongodata:/data/db
 
   nginx:
     image: nginx
@@ -27,13 +42,13 @@ services:
       dockerfile: ./compose/back/Dockerfile-dev
     command: sh /start-dev.sh
     environment:
-      - NODE_ENV=development
-      - DATABASE_CLIENT=mongo
-      - DATABASE_HOST=mongo
-      - DATABASE_PORT=27017
+      - DATABASE_HOST=mysql
+      - DATABASE_PORT=3306
       - DATABASE_NAME=strapi
+      - DATABASE_USERNAME=daesoo94
+      - DATABASE_PASSWORD=vndtkstla2
     depends_on:
-      - mongo
+      - mysql
     ports:
       - 1337:1337
     volumes:
@@ -46,9 +61,7 @@ services:
       dockerfile: ./compose/front/Dockerfile-dev
     command: sh /start-dev.sh
     environment:
-      - NODE_ENV=development
-      - BASE_SSR_API_URL=http://back:1337
-      - BASE_CSR_API_URL=/api
+      - BASE_API_URL=http://back:1337
     ports:
       - 3000:3000
     volumes:
@@ -56,6 +69,7 @@ services:
       - front_node_modules:/home/service/front/node_modules/
 
 volumes:
-  mongodata:
+  mysqldata:
+  # mongodata:
   back_node_modules:
   front_node_modules:
