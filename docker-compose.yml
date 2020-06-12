@@ -31,15 +31,15 @@ services:
     ports:
       - 80:80
     depends_on:
-      - back
-      - front
+      - strapi
+      - nextjs
     volumes:
       - ./compose/nginx/nginx.conf:/etc/nginx/nginx.conf
 
-  back:
+  strapi:
     build:
       context: .
-      dockerfile: ./compose/back/Dockerfile-dev
+      dockerfile: ./compose/strapi/Dockerfile-dev
     command: sh /start-dev.sh
     environment:
       - DATABASE_HOST=mysql
@@ -52,24 +52,24 @@ services:
     ports:
       - 1337:1337
     volumes:
-      - ./back/:/home/service/back/
-      - back_node_modules:/home/service/back/node_modules/
+      - ./strapi/:/home/service/strapi/
+      - strapi_node_modules:/home/service/strapi/node_modules/
 
-  front:
+  nextjs:
     build:
       context: .
-      dockerfile: ./compose/front/Dockerfile-dev
+      dockerfile: ./compose/nextjs/Dockerfile-dev
     command: sh /start-dev.sh
     environment:
-      - BASE_API_URL=http://back:1337
+      - BASE_API_URL=http://strapi:1337
     ports:
       - 3000:3000
     volumes:
-      - ./front/:/home/service/front/
-      - front_node_modules:/home/service/front/node_modules/
+      - ./nextjs/:/home/service/nextjs/
+      - nextjs_node_modules:/home/service/nextjs/node_modules/
 
 volumes:
   mysqldata:
   # mongodata:
-  back_node_modules:
-  front_node_modules:
+  strapi_node_modules:
+  nextjs_node_modules:
