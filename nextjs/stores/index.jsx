@@ -1,21 +1,21 @@
 import { useStaticRendering } from 'mobx-react';
-import TestStore from './testStore';
+import EnvironmentStore from './environmentStore';
 
 let store = null;
 const isServer = typeof window === 'undefined';
 useStaticRendering(isServer);
 
-export default function initializeStore(initialData = { testStore: { testString: '' } }) {
+export default function initializeStore(initialData = { environmentStore: { language: 'en' } }) {
     if (isServer) {
         return {
-            testStore: new TestStore(initialData.testStore),
+            environmentStore: new EnvironmentStore(initialData.environmentStore),
             // ... another Store
         };
     }
-    console.log(store);
+
     if (store === null) {
         store = {
-            testStore: new TestStore(initialData.testStore),
+            environmentStore: new EnvironmentStore(initialData.environmentStore),
             // ... another Store
         };
     }

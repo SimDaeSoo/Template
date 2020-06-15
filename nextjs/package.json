@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "babel-preset-react-app": "^9.1.2",
+    "i18next": "^19.4.5",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
     "next": "9.4.4",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-i18next": "^11.5.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.1",

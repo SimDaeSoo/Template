@@ -1,31 +1,27 @@
 import React from 'react';
-import { observer, inject } from 'mobx-react';
 import Link from 'next/link';
+import { observer, inject } from 'mobx-react';
+import { withTranslation } from "react-i18next";
 
-@inject('testStore')
+@inject('environmentStore')
 @observer
 class Home extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    setString = () => {
-        const { testStore } = this.props;
-        testStore.fetch('I am home');
-    }
-
     render() {
-        const { testString } = this.props.testStore;
+        const { environmentStore, i18n } = this.props;
+        const { language } = environmentStore;
+
         return (
             <div>
-                <Link href='/new'><a>goto New!.</a></Link>
-                <button onClick={this.setString}>
-                    setText
-        </button>
-                {testString}
+                <Link href={`/new${language ? `?language=${language}` : ''}`}><a>goto New!.</a></Link>
+                {i18n.t('hello')}
+                {language}
             </div>
         );
     }
 }
 
-export default Home;
+export default withTranslation()(Home);
