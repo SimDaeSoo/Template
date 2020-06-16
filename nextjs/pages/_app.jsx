@@ -16,8 +16,8 @@ export default class BaseApp extends App {
     }
 
     static async getInitialProps(appContext) {
-        const language = appContext.ctx.query.language || 'en';
-        const store = initializeStore({ environmentStore: { language } });
+        const query = appContext.ctx.query || {};
+        const store = initializeStore({ environmentStore: { query } });
         appContext.ctx.store = store;
         const appProps = await App.getInitialProps(appContext);
 

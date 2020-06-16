@@ -5,7 +5,7 @@ let store = null;
 const isServer = typeof window === 'undefined';
 useStaticRendering(isServer);
 
-export default function initializeStore(initialData = { environmentStore: { language: 'en' } }) {
+export default function initializeStore(initialData = { environmentStore: { query: {} } }) {
     if (isServer) {
         return {
             environmentStore: new EnvironmentStore(initialData.environmentStore),

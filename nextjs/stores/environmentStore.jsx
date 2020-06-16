@@ -1,20 +1,32 @@
 import { observable, action } from 'mobx';
+import i18n from '../locales/i18n';
 
 class EnvironmentStore {
     @observable
-    language = 'en';
+    query = {};
 
     constructor(initializeData) {
-        this.language = initializeData.language;
+        this.query = initializeData.query;
     }
 
     @action
     setLanguage(language) {
-        this.language = language;
+        this.query.language = language;
+        i18n.changeLanguage(language);
     }
 
-    async changeLanguage(language) {
-        this.setLanguage(language);
+    get language() {
+        return this.query.language || 'en';
+    }
+
+    get queryString() {
+        let queryString = '';
+
+        for (let key in this.query) {
+            queryString += `${queryString === '' ? '?' : '&'}${key}=${this.query[key]}`;
+        }
+
+        return queryString;
     }
 }
 

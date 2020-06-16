@@ -10,15 +10,27 @@ class Home extends React.Component {
         super(props);
     }
 
+    changeLanguage = () => {
+        const { environmentStore } = this.props;
+        const { language } = environmentStore;
+
+        if (language === 'en') {
+            environmentStore.setLanguage('ko');
+        } else {
+            environmentStore.setLanguage('en');
+        }
+    }
+
     render() {
         const { environmentStore, i18n } = this.props;
-        const { language } = environmentStore;
+        const { queryString } = environmentStore;
 
         return (
             <div>
-                <Link href={`/new${language ? `?language=${language}` : ''}`}><a>goto New!.</a></Link>
+                <Link href={`/new${queryString}`}><a>goto New!.</a></Link>
                 {i18n.t('hello')}
-                {language}
+                {queryString}
+                <button onClick={this.changeLanguage}>Change Language</button>
             </div>
         );
     }
