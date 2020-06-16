@@ -5,12 +5,8 @@ import {
 import EN from './en/index.json'
 import KO from './ko/index.json'
 const resource = {
-  en: {
-    translation: EN
-  },
-  ko: {
-    translation: KO
-  }
+  en: { translation: EN },
+  ko: { translation: KO }
 };
 i18n.use(initReactI18next).init({
   resources: resource,

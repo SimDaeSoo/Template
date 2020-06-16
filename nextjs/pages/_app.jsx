@@ -1,9 +1,20 @@
 import React from 'react';
 import App from 'next/app';
+
+/* MobX */
 import { Provider } from 'mobx-react';
 import initializeStore from '../stores';
+
+/* I18N */
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../locales/i18n';
+
+/* Styles */
+import '../public/styles/init.css';
+import 'antd/dist/antd.css';
+
+/* Components */
+import Head from '../components/head';
 
 export default class BaseApp extends App {
     constructor(props) {
@@ -32,6 +43,7 @@ export default class BaseApp extends App {
         return (
             <I18nextProvider i18n={i18n}>
                 <Provider {...this.store}>
+                    <Head />
                     <Component {...pageProps} />
                 </Provider>
             </I18nextProvider>
