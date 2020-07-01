@@ -50,7 +50,7 @@ class GameServer {
         });
 
         this.server.once('listening', (): void => {
-            console.log(`[${new Date()}] server is running http://${this.IP}:${this.port}`);
+            console.log(`[${new Date().toISOString()}] server is running http://${this.IP}:${this.port}`);
             this.createSocketServer();
         });
     }
