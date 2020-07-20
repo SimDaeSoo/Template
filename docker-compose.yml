@@ -47,6 +47,7 @@ services:
       - DATABASE_NAME=strapi
       - DATABASE_USERNAME=daesoo94
       - DATABASE_PASSWORD=vndtkstla2
+      - BASE_URL=http://localhost
     depends_on:
       - mysql
     ports:
@@ -61,7 +62,7 @@ services:
       dockerfile: ./compose/nextjs/Dockerfile-dev
     command: sh /start-dev.sh
     environment:
-      - BASE_API_URL=http://strapi:1337
+      - SSR_API_URL=http://strapi:1337
     ports:
       - 3000:3000
     volumes:

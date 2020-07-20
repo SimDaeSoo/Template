@@ -1,22 +1,23 @@
 import { useStaticRendering } from 'mobx-react';
 import EnvironmentStore from './environmentStore';
+import AuthStore from './authStore';
 
 let store = null;
 const isServer = typeof window === 'undefined';
 useStaticRendering(isServer);
 
-export default function initializeStore(initialData = { environmentStore: { query: {} } }) {
+export default function initializeStore(initialData = { environmentStore: { query: {} }, authStore: { jwt: '' } }) {
     if (isServer) {
         return {
             environmentStore: new EnvironmentStore(initialData.environmentStore),
-            // ... another Store
+            authStore: new AuthStore(initialData.authStore),
         };
     }
 
     if (store === null) {
         store = {
             environmentStore: new EnvironmentStore(initialData.environmentStore),
-            // ... another Store
+            authStore: new AuthStore(initialData.authStore),
         };
     }
 

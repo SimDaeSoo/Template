@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx';
+import { stringify } from 'querystring';
 import i18n from '../locales/i18n';
 
 class EnvironmentStore {
@@ -20,13 +21,7 @@ class EnvironmentStore {
     }
 
     get queryString() {
-        let queryString = '';
-
-        for (let key in this.query) {
-            queryString += `${queryString === '' ? '?' : '&'}${key}=${this.query[key]}`;
-        }
-
-        return queryString;
+        return stringify(this.query);
     }
 }
 

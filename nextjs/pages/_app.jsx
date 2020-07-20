@@ -16,6 +16,9 @@ import 'antd/dist/antd.css';
 /* Components */
 import Head from '../components/head';
 
+/* Utils */
+import { getAuthQuery, auth } from '../utils';
+
 export default class BaseApp extends App {
     constructor(props) {
         super(props);
@@ -27,15 +30,12 @@ export default class BaseApp extends App {
     }
 
     static async getInitialProps(appContext) {
-        const query = appContext.ctx.query || {};
-        const store = initializeStore({ environmentStore: { query } });
+        const { provider, access_token, id_token, query } = getAuthQuery(appContext.ctx.query || {});
+        const jwt = (provider && access_token && id_token) ? await auth(provider, access_token, id_token) : '';
+        const store = initializeStore({ environmentStore: { query }, authStore: { jwt } });
         appContext.ctx.store = store;
         const appProps = await App.getInitialProps(appContext);
-
-        return {
-            ...appProps,
-            initialState: store
-        };
+        return { ...appProps, initialState: store };
     }
 
     render() {
