@@ -27,6 +27,11 @@ export default class BaseApp extends App {
         this.store = isServer ? initialState : initializeStore(initialState);
         const { environmentStore } = this.store;
         i18n.changeLanguage(environmentStore.language);
+        this.checkAuth();
+    }
+
+    // Client Side에서 Session Storage JWT로 Auth 검증한다. 
+    async checkAuth() {
     }
 
     static async getInitialProps(appContext) {
