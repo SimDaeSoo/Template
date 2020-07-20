@@ -1,5 +1,6 @@
 import React from 'react';
 import App from 'next/app';
+import axios from 'axios';
 
 /* MobX */
 import { Provider } from 'mobx-react';
@@ -30,14 +31,26 @@ export default class BaseApp extends App {
         this.checkAuth();
     }
 
-    // Client Side에서 Session Storage JWT로 Auth 검증한다. 
     async checkAuth() {
+        const { authStore } = this.store;
+        const jwt = process.browser ? sessionStorage.getItem('jwt') : '';
+        if (!authStore.jwt && jwt) {
+            try {
+                const headers = { Authorization: `bearer ${jwt}` };
+                const response = await axios.get(`/api/users/me`, { headers });
+                const user = response.data;
+                authStore.user = user;
+                authStore.jwt = jwt;
+            } catch (e) {
+                sessionStorage.removeItem('jwt');
+            }
+        }
     }
 
     static async getInitialProps(appContext) {
         const { provider, access_token, id_token, query } = getAuthQuery(appContext.ctx.query || {});
-        const jwt = (provider && access_token && id_token) ? await auth(provider, access_token, id_token) : '';
-        const store = initializeStore({ environmentStore: { query }, authStore: { jwt } });
+        const { jwt, user } = (provider && access_token && id_token) ? await auth(provider, access_token, id_token) : { jwt: '', user: {} };
+        const store = initializeStore({ environmentStore: { query }, authStore: { jwt, user } });
         appContext.ctx.store = store;
         const appProps = await App.getInitialProps(appContext);
         return { ...appProps, initialState: store };

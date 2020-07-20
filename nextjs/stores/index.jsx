@@ -6,7 +6,7 @@ let store = null;
 const isServer = typeof window === 'undefined';
 useStaticRendering(isServer);
 
-export default function initializeStore(initialData = { environmentStore: { query: {} }, authStore: { jwt: '' } }) {
+export default function initializeStore(initialData = { environmentStore: { query: {} }, authStore: { jwt: '', user: {} } }) {
     if (isServer) {
         return {
             environmentStore: new EnvironmentStore(initialData.environmentStore),

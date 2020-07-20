@@ -14,7 +14,7 @@ class Provider extends React.Component {
   initialize() {
     const { authStore } = this.props;
     if (authStore.jwt && process.browser) {
-      // Session Storage 저장한다.
+      sessionStorage.setItem('jwt', authStore.jwt);
       Router.replace('/');
     }
   }

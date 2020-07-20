@@ -10,6 +10,7 @@ class New extends React.Component {
         super(props);
         const { environmentStore, authStore } = this.props;
         console.log(environmentStore, authStore);
+
     }
 
     render() {

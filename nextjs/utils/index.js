@@ -15,9 +15,9 @@ export async function auth(provider, access_token, id_token) {
     try {
         const BASE_URL = !process.browser ? process.env.SSR_API_URL : '';
         const response = await axios.get(`${BASE_URL}/auth/${provider}/callback?${stringify({ access_token, id_token })}`);
-        const { jwt } = response.data;
-        return jwt;
+        const { jwt, user } = response.data;
+        return { jwt, user };
     } catch (e) {
-        return;
+        return { jwt: '', user: {} };
     }
 }
