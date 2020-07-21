@@ -2,8 +2,9 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import Router from 'next/router';
+import AuthWrapper from '../../wrapper/authWrapper';
 
-@inject('environmentStore', 'authStore')
+@inject('environment', 'auth')
 @observer
 class Provider extends React.Component {
   constructor(props) {
@@ -12,15 +13,17 @@ class Provider extends React.Component {
   }
 
   initialize() {
-    const { authStore } = this.props;
-    if (authStore.jwt && process.browser) {
-      sessionStorage.setItem('jwt', authStore.jwt);
+    if (process.browser) {
       Router.replace('/');
     }
   }
 
   render() {
-    return (<div></div>);
+    return (
+      <AuthWrapper>
+        <div></div>
+      </AuthWrapper>
+    );
   }
 }
 

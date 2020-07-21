@@ -1,6 +1,6 @@
 import { observable } from 'mobx';
 
-class AuthStore {
+class Auth {
     @observable jwt = '';
     @observable user = {};
 
@@ -10,4 +10,4 @@ class AuthStore {
     }
 }
 
-export default AuthStore;
+export default Auth;

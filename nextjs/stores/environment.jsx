@@ -2,7 +2,7 @@ import { observable, action } from 'mobx';
 import { stringify } from 'querystring';
 import i18n from '../locales/i18n';
 
-class EnvironmentStore {
+class Environment {
     @observable query = {};
 
     constructor(initializeData) {
@@ -11,7 +11,8 @@ class EnvironmentStore {
 
     @action setLanguage(language) {
         this.query.language = language;
-        i18n.changeLanguage(language);
+        if (language === 'en') delete this.query.language;
+        i18n.changeLanguage(this.language);
     }
 
     get language() {
@@ -19,8 +20,9 @@ class EnvironmentStore {
     }
 
     get queryString() {
-        return stringify(this.query);
+        const query = stringify(this.query);
+        return query ? `?${query}` : '';
     }
 }
 
-export default EnvironmentStore;
+export default Environment;

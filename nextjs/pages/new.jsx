@@ -1,26 +1,48 @@
 import React from 'react';
-import Link from 'next/link';
+import Router from 'next/router';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
+import { Button, Select, Tag } from 'antd';
+import AuthWrapper from '../wrapper/authWrapper';
 
-@inject('environmentStore', 'authStore')
+@inject('environment', 'auth')
 @observer
 class New extends React.Component {
     constructor(props) {
         super(props);
-        const { environmentStore, authStore } = this.props;
-        console.log(environmentStore, authStore);
+    }
 
+    linkTo(url) {
+        Router.push(url);
+    }
+
+    changeLanguage(language) {
+        const { environment } = this.props;
+        environment.setLanguage(language);
     }
 
     render() {
-        const { environmentStore, i18n } = this.props;
+        const { environment, auth, i18n } = this.props;
 
         return (
-            <div>
-                <Link href={`/?${environmentStore.queryString}`}><a>goto Home!.</a></Link>
-                {i18n.t('login')}
-            </div>
+            <AuthWrapper>
+                <div>
+                    <Button type='primary' onClick={() => { this.linkTo(`/${environment.queryString}`) }}>
+                        Home Page
+                    </Button>
+
+                    <Button type='primary' onClick={() => { this.linkTo('/connect/google') }}>
+                        {i18n.t('login')}
+                    </Button>
+
+                    <Select value={environment.language} onChange={this.changeLanguage.bind(this)}>
+                        <Select.Option value="ko">Korean</Select.Option>
+                        <Select.Option value="en">English</Select.Option>
+                    </Select>
+                    <Tag color='blue'>{auth.user.email}</Tag>
+                    <Tag color='magenta'>{auth.user.username}</Tag>
+                </div>
+            </AuthWrapper>
         );
     }
 }
