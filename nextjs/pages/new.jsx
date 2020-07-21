@@ -12,6 +12,17 @@ class New extends React.Component {
         super(props);
     }
 
+    login() {
+        Router.push('/connect/google');
+    }
+
+    logout() {
+        const { auth } = this.props;
+        auth.jwt = '';
+        auth.user = {};
+        sessionStorage.removeItem('jwt');
+    }
+
     linkTo(url) {
         Router.push(url);
     }
@@ -31,16 +42,30 @@ class New extends React.Component {
                         Home Page
                     </Button>
 
-                    <Button type='primary' onClick={() => { this.linkTo('/connect/google') }}>
-                        {i18n.t('login')}
-                    </Button>
+                    {
+                        !auth.hasPermission &&
+                        <Button type='primary' onClick={this.login.bind(this)}>
+                            {i18n.t('login')}
+                        </Button>
+                    }
+                    {
+                        auth.hasPermission &&
+                        <Button type='danger' onClick={this.logout.bind(this)}>
+                            {i18n.t('logout')}
+                        </Button>
+                    }
 
                     <Select value={environment.language} onChange={this.changeLanguage.bind(this)}>
                         <Select.Option value="ko">Korean</Select.Option>
                         <Select.Option value="en">English</Select.Option>
                     </Select>
-                    <Tag color='blue'>{auth.user.email}</Tag>
-                    <Tag color='magenta'>{auth.user.username}</Tag>
+                    {
+                        auth.hasPermission &&
+                        <>
+                            <Tag color='blue'>{auth.user.email}</Tag>
+                            <Tag color='magenta'>{auth.user.username}</Tag>
+                        </>
+                    }
                 </div>
             </AuthWrapper>
         );

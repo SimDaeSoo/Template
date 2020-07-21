@@ -8,6 +8,10 @@ class Auth {
         this.jwt = initializeData.jwt;
         this.user = initializeData.user;
     }
+
+    get hasPermission() {
+        return (this.jwt && this.user);
+    }
 }
 
 export default Auth;
