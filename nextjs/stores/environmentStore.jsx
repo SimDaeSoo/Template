@@ -3,15 +3,13 @@ import { stringify } from 'querystring';
 import i18n from '../locales/i18n';
 
 class EnvironmentStore {
-    @observable
-    query = {};
+    @observable query = {};
 
     constructor(initializeData) {
         this.query = initializeData.query;
     }
 
-    @action
-    setLanguage(language) {
+    @action setLanguage(language) {
         this.query.language = language;
         i18n.changeLanguage(language);
     }

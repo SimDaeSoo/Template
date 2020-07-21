@@ -1,10 +1,8 @@
 import { observable } from 'mobx';
 
 class AuthStore {
-    @observable
-    jwt = '';
-    @observable
-    user = {};
+    @observable jwt = '';
+    @observable user = {};
 
     constructor(initializeData) {
         this.jwt = initializeData.jwt;
