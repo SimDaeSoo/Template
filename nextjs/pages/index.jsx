@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Button, Select, Tag } from 'antd';
-import AuthWrapper from '../wrapper/AuthWrapper';
+import initializeStore from '../stores';
 
 @inject('environment', 'auth')
 @observer
@@ -36,44 +36,43 @@ class Home extends React.Component {
         const { environment, auth, i18n } = this.props;
 
         return (
-            <AuthWrapper>
-                <div>
-                    <Button type='primary' onClick={() => { this.linkTo(`/new${environment.queryString}`) }}>
-                        New Page
+            <div>
+                <Button type='primary' onClick={() => { this.linkTo(`/new${environment.queryString}`) }}>
+                    New Page
                     </Button>
 
-                    {
-                        !auth.hasPermission &&
-                        <Button type='primary' onClick={this.login.bind(this)}>
-                            {i18n.t('login')}
-                        </Button>
-                    }
-                    {
-                        auth.hasPermission &&
-                        <Button type='danger' onClick={this.logout.bind(this)}>
-                            {i18n.t('logout')}
-                        </Button>
-                    }
+                {
+                    !auth.hasPermission &&
+                    <Button type='primary' onClick={this.login.bind(this)}>
+                        {i18n.t('login')}
+                    </Button>
+                }
+                {
+                    auth.hasPermission &&
+                    <Button type='danger' onClick={this.logout.bind(this)}>
+                        {i18n.t('logout')}
+                    </Button>
+                }
 
-                    <Select value={environment.language} onChange={this.changeLanguage.bind(this)}>
-                        <Select.Option value="ko">Korean</Select.Option>
-                        <Select.Option value="en">English</Select.Option>
-                    </Select>
-                    {
-                        auth.hasPermission &&
-                        <>
-                            <Tag color='blue'>{auth.user.email}</Tag>
-                            <Tag color='magenta'>{auth.user.username}</Tag>
-                        </>
-                    }
-                </div>
-            </AuthWrapper>
+                <Select value={environment.language} onChange={this.changeLanguage.bind(this)}>
+                    <Select.Option value="ko">Korean</Select.Option>
+                    <Select.Option value="en">English</Select.Option>
+                </Select>
+                {
+                    auth.hasPermission &&
+                    <>
+                        <Tag color='blue'>{auth.user.email}</Tag>
+                        <Tag color='magenta'>{auth.user.username}</Tag>
+                    </>
+                }
+            </div>
         );
     }
 }
-
-const _Home = withTranslation('Home')(Home);
-_Home.getInitialProps = async (context) => {
-    return { test: 'fetched data' };
+export async function getServerSideProps(context) {
+    const { provider, access_token, id_token, ...query } = context.query || {};
+    const initialState = { environment: { query }, auth: { jwt: '', user: '' } };
+    context.store = initialState;
+    return { props: { initialState } };
 }
-export default _Home;
+export default withTranslation('Home')(Home);
