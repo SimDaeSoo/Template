@@ -27,4 +27,8 @@ class Provider extends React.Component {
   }
 }
 
-export default withTranslation()(Provider);
+const _Provider = withTranslation('Provider')(Provider);
+_Provider.getInitialProps = async (context) => {
+  return { test: 'fetched data' };
+}
+export default _Provider;

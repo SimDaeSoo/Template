@@ -32,10 +32,6 @@ class Home extends React.Component {
         environment.setLanguage(language);
     }
 
-    static async getInitialProps(context) {
-        console.log(context);
-    }
-
     render() {
         const { environment, auth, i18n } = this.props;
 
@@ -76,4 +72,8 @@ class Home extends React.Component {
     }
 }
 
-export default withTranslation()(Home);
+const _Home = withTranslation('Home')(Home);
+_Home.getInitialProps = async (context) => {
+    return { test: 'fetched data' };
+}
+export default _Home;

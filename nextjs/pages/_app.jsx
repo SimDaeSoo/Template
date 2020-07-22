@@ -24,23 +24,26 @@ import { getAuthQuery, auth } from '../utils';
 import dynamic from 'next/dynamic'
 const TopProgressBar = dynamic(() => import('../components/TopProgressBar'), { ssr: false });
 
-export default class BaseApp extends App {
+class _App extends App {
     constructor(props) {
         super(props);
         const { initialState } = this.props;
-        const isServer = typeof window === 'undefined';
-        this.store = isServer ? initialState : initializeStore(initialState);
+        this.store = !process.browser ? initialState : initializeStore(initialState);
+
         const { environment } = this.store;
         i18n.changeLanguage(environment.language);
     }
 
-    static async getInitialProps(appContext) {
-        const { provider, access_token, id_token, query } = getAuthQuery(appContext.ctx.query || {});
+    static async getInitialProps({ Component, ctx }) {
+        const { provider, access_token, id_token, query } = getAuthQuery(ctx.query || {});
         const { jwt, user } = (provider && access_token && id_token) ? await auth(provider, access_token, id_token) : { jwt: '', user: {} };
-        const store = initializeStore({ environment: { query }, auth: { jwt, user } });
-        appContext.ctx.store = store;
-        const appProps = await App.getInitialProps(appContext);
-        return { ...appProps, initialState: store };
+        const initialState = initializeStore({ environment: { query }, auth: { jwt, user } });
+
+        ctx.store = initialState;
+
+        const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) || {} : {};
+
+        return { pageProps, initialState };
     }
 
     render() {
@@ -58,3 +61,5 @@ export default class BaseApp extends App {
         );
     }
 }
+
+export default _App;

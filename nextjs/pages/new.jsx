@@ -72,4 +72,8 @@ class New extends React.Component {
     }
 }
 
-export default withTranslation()(New);
+const _New = withTranslation('New')(New);
+_New.getInitialProps = async (context) => {
+    return { test: 'fetched data' };
+}
+export default _New;

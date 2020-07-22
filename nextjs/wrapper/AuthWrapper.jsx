@@ -1,6 +1,5 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import { withTranslation } from "react-i18next";
 import axios from 'axios';
 
 @inject('auth')
@@ -42,4 +41,4 @@ class AuthWrapper extends React.Component {
   }
 }
 
-export default withTranslation()(AuthWrapper);
+export default AuthWrapper;
