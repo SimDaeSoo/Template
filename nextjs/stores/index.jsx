@@ -1,6 +1,6 @@
 import { useStaticRendering } from 'mobx-react';
-import Environment from './environment';
-import Auth from './auth';
+import Environment from './Environment';
+import Auth from './Auth';
 
 let store = null;
 const isServer = typeof window === 'undefined';

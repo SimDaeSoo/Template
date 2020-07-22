@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Button, Select, Tag } from 'antd';
-import AuthWrapper from '../wrapper/authWrapper';
+import AuthWrapper from '../wrapper/AuthWrapper';
 
 @inject('environment', 'auth')
 @observer

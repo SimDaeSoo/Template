@@ -10,14 +10,19 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from '../locales/i18n';
 
 /* Styles */
+import 'nprogress/nprogress.css';
 import '../public/styles/init.css';
 import 'antd/dist/antd.css';
 
 /* Components */
-import Head from '../components/head';
+import Head from '../components/Head';
 
 /* Utils */
 import { getAuthQuery, auth } from '../utils';
+
+/* N-Progress */
+import dynamic from 'next/dynamic'
+const TopProgressBar = dynamic(() => import('../components/TopProgressBar'), { ssr: false });
 
 export default class BaseApp extends App {
     constructor(props) {
@@ -41,12 +46,15 @@ export default class BaseApp extends App {
     render() {
         const { Component, pageProps } = this.props;
         return (
-            <I18nextProvider i18n={i18n}>
-                <Provider {...this.store}>
-                    <Head />
-                    <Component {...pageProps} />
-                </Provider>
-            </I18nextProvider>
+            <>
+                <TopProgressBar />
+                <I18nextProvider i18n={i18n}>
+                    <Provider {...this.store}>
+                        <Head />
+                        <Component {...pageProps} />
+                    </Provider>
+                </I18nextProvider>
+            </>
         );
     }
 }
