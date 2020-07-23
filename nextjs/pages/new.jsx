@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Button, Select, Tag } from 'antd';
-import AuthWrapper from '../wrapper/AuthWrapper';
+import { initialize } from '../utils';
 
 @inject('environment', 'auth')
 @observer
@@ -18,9 +18,7 @@ class New extends React.Component {
 
     logout() {
         const { auth } = this.props;
-        auth.jwt = '';
-        auth.user = {};
-        sessionStorage.removeItem('jwt');
+        auth.logout();
     }
 
     linkTo(url) {
@@ -36,44 +34,43 @@ class New extends React.Component {
         const { environment, auth, i18n } = this.props;
 
         return (
-            <AuthWrapper>
-                <div>
-                    <Button type='primary' onClick={() => { this.linkTo(`/${environment.queryString}`) }}>
-                        Home Page
+            <div>
+                <Button type='primary' onClick={() => { this.linkTo(`/${environment.queryString}`) }}>
+                    Home Page
                     </Button>
 
-                    {
-                        !auth.hasPermission &&
-                        <Button type='primary' onClick={this.login.bind(this)}>
-                            {i18n.t('login')}
-                        </Button>
-                    }
-                    {
-                        auth.hasPermission &&
-                        <Button type='danger' onClick={this.logout.bind(this)}>
-                            {i18n.t('logout')}
-                        </Button>
-                    }
+                {
+                    !auth.hasPermission &&
+                    <Button type='primary' onClick={this.login.bind(this)}>
+                        {i18n.t('login')}
+                    </Button>
+                }
+                {
+                    auth.hasPermission &&
+                    <Button type='danger' onClick={this.logout.bind(this)}>
+                        {i18n.t('logout')}
+                    </Button>
+                }
 
-                    <Select value={environment.language} onChange={this.changeLanguage.bind(this)}>
-                        <Select.Option value="ko">Korean</Select.Option>
-                        <Select.Option value="en">English</Select.Option>
-                    </Select>
-                    {
-                        auth.hasPermission &&
-                        <>
-                            <Tag color='blue'>{auth.user.email}</Tag>
-                            <Tag color='magenta'>{auth.user.username}</Tag>
-                        </>
-                    }
-                </div>
-            </AuthWrapper>
+                <Select value={environment.language} onChange={this.changeLanguage.bind(this)}>
+                    <Select.Option value="ko">Korean</Select.Option>
+                    <Select.Option value="en">English</Select.Option>
+                </Select>
+                {
+                    auth.hasPermission &&
+                    <>
+                        <Tag color='blue'>{auth.user.email}</Tag>
+                        <Tag color='magenta'>{auth.user.username}</Tag>
+                    </>
+                }
+            </div>
         );
     }
 }
 
-const _New = withTranslation('New')(New);
-_New.getInitialProps = async (context) => {
-    return { test: 'fetched data' };
+export async function getServerSideProps(context) {
+    const initializeData = await initialize(context);
+    return { props: { initializeData } };
 }
-export default _New;
+
+export default withTranslation('New')(New);

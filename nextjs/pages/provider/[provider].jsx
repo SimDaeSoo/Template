@@ -1,34 +1,23 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
-import Router from 'next/router';
-import AuthWrapper from '../../wrapper/AuthWrapper';
+import { initialize } from '../../utils';
 
 @inject('environment', 'auth')
 @observer
 class Provider extends React.Component {
   constructor(props) {
     super(props);
-    this.initialize();
-  }
-
-  initialize() {
-    if (process.browser) {
-      Router.replace('/');
-    }
   }
 
   render() {
-    return (
-      <AuthWrapper>
-        <div></div>
-      </AuthWrapper>
-    );
+    return (<></>);
   }
 }
 
-const _Provider = withTranslation('Provider')(Provider);
-_Provider.getInitialProps = async (context) => {
-  return { test: 'fetched data' };
+export async function getServerSideProps(context) {
+  const initializeData = await initialize(context);
+  return { props: { initializeData } };
 }
-export default _Provider;
+
+export default withTranslation('Provider')(Provider);

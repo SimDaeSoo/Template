@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 
 class Auth {
     @observable jwt = '';
@@ -7,6 +7,11 @@ class Auth {
     constructor(initializeData) {
         this.jwt = initializeData.jwt;
         this.user = initializeData.user;
+    }
+
+    @action logout() {
+        this.jwt = '';
+        this.user = {};
     }
 
     get hasPermission() {

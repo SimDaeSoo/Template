@@ -3,7 +3,8 @@ import Router from 'next/router';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Button, Select, Tag } from 'antd';
-import initializeStore from '../stores';
+import { initialize } from '../utils';
+import UserTest from '../components/UserTest';
 
 @inject('environment', 'auth')
 @observer
@@ -18,9 +19,7 @@ class Home extends React.Component {
 
     logout() {
         const { auth } = this.props;
-        auth.jwt = '';
-        auth.user = {};
-        sessionStorage.removeItem('jwt');
+        auth.logout();
     }
 
     linkTo(url) {
@@ -65,14 +64,15 @@ class Home extends React.Component {
                         <Tag color='magenta'>{auth.user.username}</Tag>
                     </>
                 }
+                <UserTest test={'test'}></UserTest>
             </div>
         );
     }
 }
+
 export async function getServerSideProps(context) {
-    const { provider, access_token, id_token, ...query } = context.query || {};
-    const initialState = { environment: { query }, auth: { jwt: '', user: '' } };
-    context.store = initialState;
-    return { props: { initialState } };
+    const initializeData = await initialize(context);
+    return { props: { initializeData } };
 }
+
 export default withTranslation('Home')(Home);
