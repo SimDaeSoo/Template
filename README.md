@@ -1,7 +1,6 @@
 # Template
 - Last Updated : 2020.07.23  
 Default template of creating basic web service.  
-(if you wanna use socket server than please checking dependencies version your self)  
 -----
 
 ## Dependecies Version
@@ -16,7 +15,6 @@ Default template of creating basic web service.
 - 80 Port - NginX Server  
 - 1337 Port - StrAPI Server  
 - 3000 Port - Next.js Server  
-- 3030 Port - Socket Server
 - 3306 Port - MySQL Server  
 
 ## How To Run
