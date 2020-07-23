@@ -15,17 +15,6 @@ services:
     ports:
       - 3306:3306
 
-  # This MongoDB can use but default database is MySQL 
-  # mongo:
-  #   image: mongo
-  #   hostname: mongo
-  #   environment:
-  #     MONGO_INITDB_DATABASE: strapi
-  #   ports:
-  #     - 27017:27017
-  #   volumes:
-  #     - mongodata:/data/db
-
   nginx:
     image: nginx
     ports:
@@ -71,6 +60,5 @@ services:
 
 volumes:
   mysqldata:
-  # mongodata:
   strapi_node_modules:
   nextjs_node_modules:

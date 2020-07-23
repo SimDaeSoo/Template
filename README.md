@@ -1,15 +1,23 @@
 # Template
-Last Updated : 2020.07.01
-Dependencies update when 0.1.0 version update
-Default template of creating basic web service
+- Last Updated : 2020.07.23  
+Default template of creating basic web service.  
+(if you wanna use socket server than please checking dependencies version your self)  
+-----
+
+## Dependecies Version
+- Docker Compose (v3.8)  
+- Base Node.js Image (LTS v12.x.x)
+- Next.js (v9.4.4)  
+(Update when 0.0.1 version update)  
+- Strapi (v3.1.0)  
+(Update when 0.1.0 version update)  
 
 ## Service Port Info
 - 80 Port - NginX Server  
-- 1337 Port - StrAPI Server (v3.0.0)  
-- 3000 Port - Next.js Server (v9.4.4)  
+- 1337 Port - StrAPI Server  
+- 3000 Port - Next.js Server  
 - 3030 Port - Socket Server
-- 3306 Port - MySQL Server(Default DB)  
-- 27017 Port - MongoDB Server  
+- 3306 Port - MySQL Server  
 
 ## How To Run
 ### Mac OSX & Linux
@@ -30,4 +38,3 @@ $ docker-compose up
 - NginX - <https://www.nginx.com/>  
 - StrAPI - <https://strapi.io/>  
 - Next.js - <https://nextjs.org/>  
-- MongoDB - <https://www.mongodb.com/>  
