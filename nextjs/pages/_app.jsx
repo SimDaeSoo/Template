@@ -26,9 +26,6 @@ class _App extends App {
         super(props);
         const { initializeData } = this.props.pageProps;
         this.store = initializeStore(initializeData);
-
-        const { environment } = this.store;
-        environment.setLanguage(environment.language);
     }
 
     render() {

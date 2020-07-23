@@ -17,6 +17,10 @@ class Provider extends React.Component {
 
 export async function getServerSideProps(context) {
   const initializeData = await initialize(context);
+
+  context.res.writeHead(303, { Location: '/' });
+  context.res.end();
+
   return { props: { initializeData } };
 }
 

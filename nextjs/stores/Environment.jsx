@@ -7,6 +7,7 @@ class Environment {
 
     constructor(initializeData) {
         this.query = initializeData.query;
+        this.setLanguage(this.language);
     }
 
     @action setLanguage(language) {
