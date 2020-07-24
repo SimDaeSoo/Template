@@ -12,6 +12,7 @@ class Auth {
     @action logout() {
         this.jwt = '';
         this.user = {};
+        if (process.browser) document.cookie = 'jwt=;';
     }
 
     get hasPermission() {

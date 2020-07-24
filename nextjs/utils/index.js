@@ -8,7 +8,7 @@ export async function initialize(context) {
 }
 
 async function _auth(context) {
-    const { provider, access_token, id_token, query } = _seperateAuthQuery(context.query || {});
+    const { provider, access_token, id_token } = _seperateAuthQuery(context.query || {});
     const _hasAuthOption = provider && access_token && id_token;
     const _requestJWT = _getCookie(context, 'jwt');
     let [jwt, user] = ['', {}];
@@ -18,7 +18,6 @@ async function _auth(context) {
             const response = await _verifing(provider, access_token, id_token);
             [jwt, user] = [response.jwt, response.user];
             _setCookie(context, 'jwt', response.jwt);
-            _redirect(context, '/');
         } catch (e) {
             _setCookie(context, 'jwt', '', 0);
             console.log(e);
@@ -58,9 +57,8 @@ function _seperateAuthQuery(base) {
 }
 
 function _setCookie(ctx, cname, cvalue, exdays) {
-    const d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    const expires = 'expires=' + d.toUTCString();
+    const expireDate = new Date(Date.now() + (exdays * 24 * 60 * 60 * 1000));
+    const expires = `expires=${expireDate.toUTCString()}`;
     ctx.res.setHeader('Set-Cookie', cname + '=' + cvalue + ';' + expires + ';path=/');
 }
 
@@ -78,9 +76,4 @@ function _getCookie(ctx, cname) {
         }
     }
     return '';
-}
-
-function _redirect(context, location) {
-    context.res.writeHead(303, { Location: location });
-    context.res.end();
 }
