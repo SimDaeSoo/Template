@@ -1,5 +1,5 @@
 # Template
-- Last Updated : 2020.07.23  
+- Every Single Dependcies Updated : 2020.07.23  
 Default template of creating basic web service.  
 
 ## Dependecies Version
