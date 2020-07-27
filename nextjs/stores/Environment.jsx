@@ -1,5 +1,6 @@
 import { observable, action } from 'mobx';
 import { stringify } from 'querystring';
+import Router from 'next/router';
 import i18n from '../locales/i18n';
 
 class Environment {
@@ -7,13 +8,18 @@ class Environment {
 
     constructor(initializeData) {
         this.query = initializeData.query;
-        this.setLanguage(this.language);
+        i18n.changeLanguage(this.language);
     }
 
-    @action setLanguage(language) {
-        this.query.language = language;
-        if (language === 'en') delete this.query.language;
-        i18n.changeLanguage(this.language);
+    @action set(key, value) {
+        if (this.query[key] !== value) {
+            this.query[key] = value;
+
+            if (this.query.language === 'en') delete this.query.language;
+            i18n.changeLanguage(this.language);
+
+            Router.push(`${Router.route}${this.queryString}`);
+        }
     }
 
     get language() {

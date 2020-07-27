@@ -28,7 +28,7 @@ class Home extends React.Component {
 
     changeLanguage(language) {
         const { environment } = this.props;
-        environment.setLanguage(language);
+        environment.set('language', language);
     }
 
     render() {
