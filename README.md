@@ -1,12 +1,12 @@
 # Template
-- Every Single Dependcies Updated : 2020.07.28  
+- Every Single Dependcies Updated : 2020.07.23  
 Default template of creating basic web service.  
 
 ## Dependecies Version
 - Docker Compose (v3.8)  
 - Base Node.js Image (LTS v12.x.x)
-- Next.js (v9.5.0)  
-(Update when 0.1.0 version changed)  
+- Next.js (v9.4.4)  
+(Update when 0.0.1 version changed)  
 - StrAPI (v3.1.0)  
 (Update when 0.1.0 version changed)  
 
