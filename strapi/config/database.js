@@ -12,16 +12,7 @@ module.exports = ({ env }) => ({
         password: env('DATABASE_PASSWORD', 'vndtkstla2'),
         ssl: env.bool('DATABASE_SSL', false),
       },
-      options: {
-        "useNullAsDefault": true,
-        "pool": {
-          "min": 1,
-          "max": 4,
-          "idleTimeoutMillis": 30000,
-          "createTimeoutMillis": 30000,
-          "acquireTimeoutMillis": 30000
-        }
-      }
+      options: {}
     },
   },
 });
