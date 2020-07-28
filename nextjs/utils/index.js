@@ -59,7 +59,7 @@ function _seperateAuthQuery(base) {
 function _setCookie(ctx, cname, cvalue, exdays) {
     const expireDate = new Date(Date.now() + (exdays * 24 * 60 * 60 * 1000));
     const expires = `expires=${expireDate.toUTCString()}`;
-    ctx.res.setHeader('Set-Cookie', cname + '=' + cvalue + ';' + expires + ';path=/');
+    ctx.res.setHeader('Set-Cookie', cname + '=' + cvalue + ';' + expires + ';path=/;');
 }
 
 function _getCookie(ctx, cname) {
