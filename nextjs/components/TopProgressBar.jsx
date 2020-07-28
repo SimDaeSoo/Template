@@ -1,5 +1,6 @@
 import Router from "next/router";
 import NProgress from "nprogress";
+import axios from 'axios';
 
 const store = { activeRequests: 0 };
 
@@ -30,6 +31,15 @@ window.fetch = async (...args) => {
         if (store.activeRequests === 0) stop();
     }
 };
+
+axios.defaults.onDownloadProgress = e => {
+    NProgress.start();
+}
+
+axios.interceptors.response.use(response => {
+    NProgress.done(true)
+    return response
+});
 
 NProgress.configure({ showSpinner: false });
 Router.events.on("routeChangeStart", load);
