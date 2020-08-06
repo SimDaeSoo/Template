@@ -39,8 +39,6 @@ services:
       - BASE_URL=http://localhost
     depends_on:
       - mysql
-    ports:
-      - 1337:1337
     volumes:
       - ./strapi/:/home/service/strapi/
       - strapi_node_modules:/home/service/strapi/node_modules/
@@ -52,8 +50,6 @@ services:
     command: sh /start-dev.sh
     environment:
       - SSR_API_URL=http://strapi:1337
-    ports:
-      - 3000:3000
     volumes:
       - ./nextjs/:/home/service/nextjs/
       - nextjs_node_modules:/home/service/nextjs/node_modules/
