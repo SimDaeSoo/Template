@@ -4,7 +4,6 @@ import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Button, Select, Tag } from 'antd';
 import { initialize } from '../utils';
-import UserTest from '../components/UserTest';
 
 @inject('environment', 'auth')
 @observer
@@ -64,7 +63,6 @@ class Home extends React.Component {
                         <Tag color='magenta'>{auth.user.username}</Tag>
                     </>
                 }
-                <UserTest test={'test'}></UserTest>
             </div>
         );
     }

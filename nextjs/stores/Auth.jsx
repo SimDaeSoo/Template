@@ -19,14 +19,6 @@ class Auth {
         return (this.jwt && this.user);
     }
 
-    get carried() {
-        return this.user.carried_orders || [];
-    }
-
-    get liked() {
-        return this.user.liked_orders || [];
-    }
-
     _getCookie(name) {
         name = new RegExp(name + '=([^;]*)');
         return name.test(document.cookie) ? unescape(RegExp.$1) : '';
