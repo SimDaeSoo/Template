@@ -9,6 +9,11 @@ class Auth {
         this.user = initializeData.user;
     }
 
+    hydrate(initializeData) {
+        this.jwt = initializeData.jwt;
+        this.user = initializeData.user;
+    }
+
     @action logout() {
         this.jwt = '';
         this.user = {};

@@ -11,6 +11,11 @@ class Environment {
         i18n.changeLanguage(this.language);
     }
 
+    hydrate(initializeData) {
+        this.query = initializeData.query;
+        i18n.changeLanguage(this.language);
+    }
+
     @action set(key, value) {
         if (this.query[key] !== value) {
             this.query[key] = value;

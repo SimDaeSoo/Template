@@ -22,19 +22,16 @@ import dynamic from 'next/dynamic'
 const TopProgressBar = dynamic(() => import('../components/TopProgressBar'), { ssr: false });
 
 class _App extends App {
-    constructor(props) {
-        super(props);
-        const { initializeData } = this.props.pageProps;
-        this.store = initializeStore(initializeData);
-    }
-
     render() {
         const { Component, pageProps } = this.props;
+        const { initializeData } = this.props.pageProps;
+        const store = initializeStore(initializeData);
+
         return (
             <>
                 <TopProgressBar />
                 <I18nextProvider i18n={i18n}>
-                    <Provider {...this.store}>
+                    <Provider {...store}>
                         <Head />
                         <Component {...pageProps} />
                     </Provider>
