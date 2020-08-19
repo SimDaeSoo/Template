@@ -2,6 +2,7 @@ import Router from 'next/router';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Button, Select, Tag, Avatar, Menu, Dropdown } from 'antd';
+import { ExportOutlined, MailOutlined, UserOutlined } from '@ant-design/icons';
 import HydrateComponent from '../components/HydrateComponent';
 import { getInitializeAuthData } from '../stores/Auth';
 
@@ -33,9 +34,14 @@ class Home extends HydrateComponent {
         return (
             <Menu>
                 <Menu.Item disabled={true}>
-                    <Tag color='blue' style={{ margin: 0 }}>{auth.user.username} {auth.user.email}</Tag>
+                    <Tag icon={<UserOutlined style={{ margin: 0 }} />} color='blue' style={{ margin: '2px' }}>{auth.user.username}</Tag>
+                    <Tag color='geekblue' style={{ margin: '2px' }}>{auth.user.role.name}</Tag>
                 </Menu.Item>
-                <Menu.Item onClick={this.logout} danger>
+                <Menu.Item disabled={true}>
+                    <Tag icon={<MailOutlined style={{ margin: 0 }} />} color='magenta' style={{ margin: '2px' }}>{auth.user.email}</Tag>
+                </Menu.Item>
+                <Menu.Item onClick={this.logout}>
+                    <ExportOutlined />
                     {i18n.t('logout')}
                 </Menu.Item>
             </Menu>
