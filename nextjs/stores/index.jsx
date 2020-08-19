@@ -6,18 +6,15 @@ useStaticRendering(!process.browser);
 
 let store = null;
 
-export function getStore() {
+export function hydrate(initialData) {
     if (store === null) {
         store = {
             environment: new Environment(),
             auth: new Auth(),
         };
     }
-
-    return store;
-}
-
-export function hydrate(initialData) {
     store.environment.hydrate(initialData.environment || {});
     store.auth.hydrate(initialData.auth || {});
+
+    return store;
 }

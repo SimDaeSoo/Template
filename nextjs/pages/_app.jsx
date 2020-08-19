@@ -20,20 +20,20 @@ import Head from '../components/Head';
 /* N-Progress */
 import dynamic from 'next/dynamic';
 import Network from '../utils/network';
-import { computed } from 'mobx';
 const TopProgressBar = dynamic(() => import('../components/TopProgressBar'), { ssr: false });
 
 class _App extends App {
     constructor(props) {
         super(props);
-        this.store = getStore();
+        const { initializeData } = this.props.pageProps;
+        this.store = hydrate(initializeData || {});
     }
 
     hydrate = () => {
         const { initializeData } = this.props.pageProps;
 
         if (initializeData.auth.updatedAt !== this.store.auth.updatedAt) {
-            hydrate(initializeData || {});
+            this.store = hydrate(initializeData || {});
             Network.jwt = this.store.auth.jwt;
         }
     }

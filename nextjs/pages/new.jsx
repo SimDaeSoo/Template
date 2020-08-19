@@ -32,7 +32,7 @@ class New extends HydrateComponent {
 
     get menu() {
         const { auth, i18n } = this.props;
-        console.log(auth.user);
+
         return (
             <Menu>
                 <Menu.Item disabled={true}>
