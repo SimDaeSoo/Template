@@ -18,7 +18,8 @@ import 'antd/dist/antd.css';
 import Head from '../components/Head';
 
 /* N-Progress */
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
+import Network from '../utils/network';
 const TopProgressBar = dynamic(() => import('../components/TopProgressBar'), { ssr: false });
 
 class _App extends App {
@@ -27,11 +28,9 @@ class _App extends App {
         const { initializeData } = this.props.pageProps;
         Network.jwt = ((initializeData || {}).auth || {}).jwt || '';
     }
-
     render() {
         const { Component, pageProps } = this.props;
-        const { initializeData } = this.props.pageProps;
-        const store = initializeStore(initializeData);
+        const store = initializeStore(pageProps.initializeData || {});
 
         return (
             <>

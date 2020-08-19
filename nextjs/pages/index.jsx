@@ -12,47 +12,48 @@ class Home extends React.Component {
         super(props);
     }
 
-    login() {
+    login = () => {
         Router.push('/connect/google');
     }
 
-    logout() {
+    logout = () => {
         const { auth } = this.props;
         auth.logout();
     }
 
-    linkTo(url) {
-        Router.push(url);
+    goToNew = () => {
+        const { environment } = this.props;
+        Router.push(`/new${environment.queryString}`);
     }
 
-    changeLanguage(language) {
+    changeLanguage = (language) => {
         const { environment } = this.props;
         environment.set('language', language);
     }
 
     render() {
-        const { environment, auth, i18n } = this.props;
+        const { auth, i18n } = this.props;
 
         return (
             <div>
-                <Button type='primary' onClick={() => { this.linkTo(`/new${environment.queryString}`) }}>
+                <Button type='primary' onClick={this.goToNew}>
                     New Page
                     </Button>
 
                 {
                     !auth.hasPermission &&
-                    <Button type='primary' onClick={this.login.bind(this)}>
+                    <Button type='primary' onClick={this.login}>
                         {i18n.t('login')}
                     </Button>
                 }
                 {
                     auth.hasPermission &&
-                    <Button type='danger' onClick={this.logout.bind(this)}>
+                    <Button type='danger' onClick={this.logout}>
                         {i18n.t('logout')}
                     </Button>
                 }
 
-                <Select value={environment.language} onChange={this.changeLanguage.bind(this)}>
+                <Select value={i18n.language} onChange={this.changeLanguage}>
                     <Select.Option value="ko">Korean</Select.Option>
                     <Select.Option value="en">English</Select.Option>
                 </Select>

@@ -12,47 +12,48 @@ class New extends React.Component {
         super(props);
     }
 
-    login() {
+    login = () => {
         Router.push('/connect/google');
     }
 
-    logout() {
+    logout = () => {
         const { auth } = this.props;
         auth.logout();
     }
 
-    linkTo(url) {
-        Router.push(url);
+    goToHome = () => {
+        const { environment } = this.props;
+        Router.push(`/${environment.queryString}`);
     }
 
-    changeLanguage(language) {
-        const { environment } = this.props;
-        environment.set('language', language);
+    changeLanguage = (language) => {
+        const { i18n } = this.props;
+        i18n.changeLanguage(language);
     }
 
     render() {
-        const { environment, auth, i18n } = this.props;
+        const { auth, i18n } = this.props;
 
         return (
             <div>
-                <Button type='primary' onClick={() => { this.linkTo(`/${environment.queryString}`) }}>
+                <Button type='primary' onClick={this.goToHome}>
                     Home Page
-                    </Button>
+                </Button>
 
                 {
                     !auth.hasPermission &&
-                    <Button type='primary' onClick={this.login.bind(this)}>
+                    <Button type='primary' onClick={this.login}>
                         {i18n.t('login')}
                     </Button>
                 }
                 {
                     auth.hasPermission &&
-                    <Button type='danger' onClick={this.logout.bind(this)}>
+                    <Button type='danger' onClick={this.logout}>
                         {i18n.t('logout')}
                     </Button>
                 }
 
-                <Select value={environment.language} onChange={this.changeLanguage.bind(this)}>
+                <Select value={i18n.language} onChange={this.changeLanguage}>
                     <Select.Option value="ko">Korean</Select.Option>
                     <Select.Option value="en">English</Select.Option>
                 </Select>

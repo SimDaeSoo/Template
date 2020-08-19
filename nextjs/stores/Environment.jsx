@@ -1,15 +1,10 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { stringify } from 'querystring';
 import Router from 'next/router';
 import i18n from '../locales/i18n';
 
 class Environment {
     @observable query = {};
-
-    constructor(initializeData) {
-        this.query = initializeData.query;
-        i18n.changeLanguage(this.language);
-    }
 
     hydrate(initializeData) {
         this.query = initializeData.query;
@@ -27,11 +22,11 @@ class Environment {
         }
     }
 
-    get language() {
+    @computed get language() {
         return this.query.language || 'en';
     }
 
-    get queryString() {
+    @computed get queryString() {
         const query = stringify(this.query);
         return query ? `?${query}` : '';
     }

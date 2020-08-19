@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import axios from 'axios';
 import Network from '../utils/network';
 import { _seperateAuthQuery, _getCookieSSR, _setCookieCSR, _setCookieSSR, _verifing } from '../utils';
@@ -6,11 +6,6 @@ import { _seperateAuthQuery, _getCookieSSR, _setCookieCSR, _setCookieSSR, _verif
 class Auth {
     @observable jwt = '';
     @observable user = {};
-
-    constructor(initializeData) {
-        this.jwt = initializeData.jwt;
-        this.user = initializeData.user;
-    }
 
     hydrate(initializeData) {
         this.jwt = initializeData.jwt;
@@ -23,11 +18,11 @@ class Auth {
         if (process.browser) _setCookieCSR('jwt', '');
     }
 
-    get role() {
+    @computed get role() {
         return ((this.user || {}).role || {}).name || '';
     }
 
-    get hasPermission() {
+    @computed get hasPermission() {
         return (this.jwt && this.user);
     }
 }
@@ -55,10 +50,10 @@ export async function getInitializeAuthData(context) {
         console.log(e);
     }
 
-    if (!jwt) {
-        context.res.writeHead(303, { Location: '/login' });
-        context.res.end();
-    }
+    // if (!jwt) {
+    //     context.res.writeHead(303, { Location: '/login' });
+    //     context.res.end();
+    // }
 
     Network.jwt = jwt;
     return { jwt, user };

@@ -7,7 +7,7 @@ Default template of creating basic web service.
 - Base Node.js Image (LTS v12.x.x)
 - Next.js (v9.5.0)  
 (Update when 0.1.0 version changed)  
-- StrAPI (v3.1.0)  
+- StrAPI (v3.1.4)  
 (Update when 0.1.0 version changed)  
 
 ## Service Port Info
