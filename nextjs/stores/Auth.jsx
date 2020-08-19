@@ -8,8 +8,8 @@ class Auth {
     @observable user = {};
 
     hydrate(initializeData) {
-        this.jwt = initializeData.jwt;
-        this.user = initializeData.user;
+        this.jwt = initializeData.jwt || '';
+        this.user = initializeData.user || {};
     }
 
     @action logout = () => {

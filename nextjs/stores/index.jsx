@@ -17,7 +17,7 @@ export function getStore() {
     return store;
 }
 
-export function hydrate(initialData = { environment: { query: {} }, auth: { jwt: '', user: {} } }) {
-    store.environment.hydrate(initialData.environment);
-    store.auth.hydrate(initialData.auth);
+export function hydrate(initialData) {
+    store.environment.hydrate(initialData.environment || {});
+    store.auth.hydrate(initialData.auth || {});
 }

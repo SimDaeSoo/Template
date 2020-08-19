@@ -26,14 +26,13 @@ const TopProgressBar = dynamic(() => import('../components/TopProgressBar'), { s
 class _App extends App {
     constructor(props) {
         super(props);
-        const { initializeData } = this.props.pageProps;
-        Network.jwt = ((initializeData || {}).auth || {}).jwt || '';
         this.store = getStore();
     }
 
     hydrate = () => {
         const { initializeData } = this.props.pageProps;
         hydrate(initializeData || {});
+        Network.jwt = this.store.auth.jwt;
     }
 
     render() {

@@ -7,7 +7,7 @@ class Environment {
     @observable query = {};
 
     hydrate(initializeData) {
-        this.query = initializeData.query;
+        this.query = initializeData.query || {};
         i18n.changeLanguage(this.language);
     }
 
