@@ -4,12 +4,14 @@ import Network from '../utils/network';
 import { _seperateAuthQuery, _getCookieSSR, _setCookieCSR, _setCookieSSR, _verifing } from '../utils';
 
 class Auth {
+    @observable updatedAt;
     @observable jwt = '';
     @observable user = {};
 
     hydrate(initializeData) {
-        this.jwt = initializeData.jwt || '';
-        this.user = initializeData.user || {};
+        this.jwt = initializeData.jwt;
+        this.user = initializeData.user;
+        this.updatedAt = initializeData.updatedAt;
     }
 
     @action logout = () => {
@@ -56,7 +58,7 @@ export async function getInitializeAuthData(context) {
     // }
 
     Network.jwt = jwt;
-    return { jwt, user };
+    return { jwt, user, updatedAt: Date.now() };
 }
 
 export default Auth;

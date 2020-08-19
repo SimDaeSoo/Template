@@ -31,8 +31,11 @@ class _App extends App {
 
     hydrate = () => {
         const { initializeData } = this.props.pageProps;
-        hydrate(initializeData || {});
-        Network.jwt = this.store.auth.jwt;
+
+        if (initializeData.auth.updatedAt !== this.store.auth.updatedAt) {
+            hydrate(initializeData || {});
+            Network.jwt = this.store.auth.jwt;
+        }
     }
 
     render() {
