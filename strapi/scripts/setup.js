@@ -6,7 +6,6 @@ async function setup(strapi) {
   });
   const grantValue = await pluginStore.get({ key: 'grant' });
   if (grantValue) {
-    console.log(grantValue)
     try {
       await pluginStore.set({
         key: 'grant',

@@ -6,7 +6,7 @@ useStaticRendering(!process.browser);
 
 let store = null;
 
-export default function initializeStore(initialData = { environment: { query: {} }, auth: { jwt: '', user: {} } }) {
+export function getStore() {
     if (store === null) {
         store = {
             environment: new Environment(),
@@ -14,8 +14,10 @@ export default function initializeStore(initialData = { environment: { query: {}
         };
     }
 
+    return store;
+}
+
+export function hydrate(initialData = { environment: { query: {} }, auth: { jwt: '', user: {} } }) {
     store.environment.hydrate(initialData.environment);
     store.auth.hydrate(initialData.auth);
-
-    return store;
 }

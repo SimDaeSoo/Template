@@ -1,17 +1,13 @@
-import React from 'react';
 import Router from 'next/router';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
-import { Button, Select, Tag } from 'antd';
+import { Button, Select, Tag, Avatar, Menu, Dropdown } from 'antd';
+import HydrateComponent from '../components/HydrateComponent';
 import { getInitializeAuthData } from '../stores/Auth';
 
 @inject('environment', 'auth')
 @observer
-class Home extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
+class Home extends HydrateComponent {
     login = () => {
         Router.push('/connect/google');
     }
@@ -31,6 +27,21 @@ class Home extends React.Component {
         environment.set('language', language);
     }
 
+    get menu() {
+        const { auth, i18n } = this.props;
+
+        return (
+            <Menu>
+                <Menu.Item disabled={true}>
+                    <Tag color='blue' style={{ margin: 0 }}>{auth.user.username} {auth.user.email}</Tag>
+                </Menu.Item>
+                <Menu.Item onClick={this.logout} danger>
+                    {i18n.t('logout')}
+                </Menu.Item>
+            </Menu>
+        )
+    }
+
     render() {
         const { auth, i18n } = this.props;
 
@@ -38,7 +49,7 @@ class Home extends React.Component {
             <div>
                 <Button type='primary' onClick={this.goToNew}>
                     New Page
-                    </Button>
+                </Button>
 
                 {
                     !auth.hasPermission &&
@@ -48,22 +59,17 @@ class Home extends React.Component {
                 }
                 {
                     auth.hasPermission &&
-                    <Button type='danger' onClick={this.logout}>
-                        {i18n.t('logout')}
-                    </Button>
+                    <Dropdown overlay={this.menu}>
+                        <a>
+                            <Avatar src={auth.user.thumbnail} />
+                        </a>
+                    </Dropdown>
                 }
 
                 <Select value={i18n.language} onChange={this.changeLanguage}>
                     <Select.Option value="ko">Korean</Select.Option>
                     <Select.Option value="en">English</Select.Option>
                 </Select>
-                {
-                    auth.hasPermission &&
-                    <>
-                        <Tag color='blue'>{auth.user.email}</Tag>
-                        <Tag color='magenta'>{auth.user.username}</Tag>
-                    </>
-                }
             </div>
         );
     }

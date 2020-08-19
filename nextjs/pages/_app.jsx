@@ -3,7 +3,7 @@ import App from 'next/app';
 
 /* MobX */
 import { Provider } from 'mobx-react';
-import initializeStore from '../stores';
+import { getStore, hydrate } from '../stores';
 
 /* I18N */
 import { I18nextProvider } from 'react-i18next';
@@ -20,6 +20,7 @@ import Head from '../components/Head';
 /* N-Progress */
 import dynamic from 'next/dynamic';
 import Network from '../utils/network';
+import { computed } from 'mobx';
 const TopProgressBar = dynamic(() => import('../components/TopProgressBar'), { ssr: false });
 
 class _App extends App {
@@ -27,18 +28,24 @@ class _App extends App {
         super(props);
         const { initializeData } = this.props.pageProps;
         Network.jwt = ((initializeData || {}).auth || {}).jwt || '';
+        this.store = getStore();
     }
+
+    hydrate = () => {
+        const { initializeData } = this.props.pageProps;
+        hydrate(initializeData || {});
+    }
+
     render() {
         const { Component, pageProps } = this.props;
-        const store = initializeStore(pageProps.initializeData || {});
 
         return (
             <>
                 <TopProgressBar />
                 <I18nextProvider i18n={i18n}>
-                    <Provider {...store}>
+                    <Provider {...this.store}>
                         <Head />
-                        <Component {...pageProps} />
+                        <Component {...pageProps} hydrate={this.hydrate} />
                     </Provider>
                 </I18nextProvider>
             </>

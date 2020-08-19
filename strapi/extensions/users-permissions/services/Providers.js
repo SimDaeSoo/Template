@@ -216,7 +216,6 @@ const getProfile = async (provider, query, callback) => {
           if (err) {
             callback(err);
           } else {
-            console.log(body);
             callback(null, {
               username: body.name || body.email.split('@')[0],
               email: body.email,
