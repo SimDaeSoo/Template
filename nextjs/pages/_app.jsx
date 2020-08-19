@@ -3,7 +3,7 @@ import App from 'next/app';
 
 /* MobX */
 import { Provider } from 'mobx-react';
-import { getStore, hydrate } from '../stores';
+import { hydrate } from '../stores';
 
 /* I18N */
 import { I18nextProvider } from 'react-i18next';
