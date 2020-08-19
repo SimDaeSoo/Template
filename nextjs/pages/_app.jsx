@@ -22,6 +22,12 @@ import dynamic from 'next/dynamic'
 const TopProgressBar = dynamic(() => import('../components/TopProgressBar'), { ssr: false });
 
 class _App extends App {
+    constructor(props) {
+        super(props);
+        const { initializeData } = this.props.pageProps;
+        Network.jwt = ((initializeData || {}).auth || {}).jwt || '';
+    }
+
     render() {
         const { Component, pageProps } = this.props;
         const { initializeData } = this.props.pageProps;

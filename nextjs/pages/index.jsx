@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Button, Select, Tag } from 'antd';
-import { initialize } from '../utils';
+import { getInitializeAuthData } from '../stores/Auth';
 
 @inject('environment', 'auth')
 @observer
@@ -69,8 +69,9 @@ class Home extends React.Component {
 }
 
 export async function getServerSideProps(context) {
-    const initializeData = await initialize(context);
-    return { props: { initializeData } };
+    const auth = await getInitializeAuthData(context);
+
+    return { props: { initializeData: { auth, environment: { query: context.query } } } };
 }
 
 export default withTranslation('Home')(Home);
