@@ -1,4 +1,4 @@
-async function setup(strapi) {
+async function setProvider(strapi) {
   const pluginStore = strapi.store({
     type: 'plugin',
     environment: '',
@@ -30,4 +30,4 @@ async function setup(strapi) {
   }
 }
 
-module.exports = setup;
+module.exports = setProvider;

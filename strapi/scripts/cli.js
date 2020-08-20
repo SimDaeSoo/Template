@@ -1,21 +1,21 @@
 const strapi = require('strapi')();
 const program = require('commander');
-const setup = require('./setup');
+const setProvider = require('./setProvider');
 
 program
-  .command('setup')
-  .description('setup')
+  .command('setProvider')
+  .description('set provider')
   .action(async () => {
     strapi.start(async () => {
       try {
-        await setup(strapi);
+        await setProvider(strapi);
       } catch (e) {
-        strapi.log.info('서버 셋업 실패');
+        strapi.log.info('set provider fail..');
         strapi.log.error(e);
         strapi.server.destroy();
         process.exit(0);
       }
-      strapi.log.info('서버 셋업 완료');
+      strapi.log.info('set provider sucess!!');
       strapi.server.destroy();
       process.exit(0);
     });
