@@ -26,8 +26,8 @@ class New extends HydrateComponent {
     }
 
     changeLanguage = (language) => {
-        const { i18n } = this.props;
-        i18n.changeLanguage(language);
+        const { environment } = this.props;
+        environment.set('language', language);
     }
 
     get menu() {
