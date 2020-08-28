@@ -1,7 +1,8 @@
+@import '~antd/dist/antd.dark.css';
 html,
 body,
 #__next {
   height: 100%;
   width: 100%;
-  background-color: #f0f2f5;
+  background-color: #151515;
 }

@@ -77,7 +77,7 @@ const SubTitleStyle = {
 }
 
 const LoginFormStyle = {
-  width: '300px',
+  width: '220px',
   margin: 'auto'
 }
 

@@ -12,7 +12,6 @@ import i18n from '../locales/i18n';
 /* Styles */
 import 'nprogress/nprogress.css';
 import '../public/styles/init.css';
-import 'antd/dist/antd.css';
 
 /* Components */
 import Head from '../components/Head';
