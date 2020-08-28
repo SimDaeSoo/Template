@@ -16,8 +16,8 @@ class SelectLanguage extends React.Component {
 
         return (
             <Select value={i18n.language} onChange={this.changeLanguage} style={style || {}}>
-                <Select.Option value="ko">{i18n.t('korean')}</Select.Option>
                 <Select.Option value="en">{i18n.t('english')}</Select.Option>
+                <Select.Option value="ko">{i18n.t('korean')}</Select.Option>
             </Select>
         );
     }
