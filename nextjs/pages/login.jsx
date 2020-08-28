@@ -1,10 +1,10 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from 'react-i18next';
-import { Select } from 'antd';
 import HydrateComponent from '../components/HydrateComponent';
 import { getInitializeAuthData } from '../stores/Auth';
 import { GoogleOutlined } from '@ant-design/icons';
+import SelectLanguage from '../components/SelectLanguage';
 
 @inject('environment', 'auth')
 @observer
@@ -24,10 +24,7 @@ class Login extends HydrateComponent {
     return (
       <div style={LoginPageStyle}>
         <div style={LanguageSelectboxStyle}>
-          <Select value={i18n.language} onChange={this.changeLanguage}>
-            <Select.Option value='ko'>{i18n.t('korean')}</Select.Option>
-            <Select.Option value='en'>{i18n.t('english')}</Select.Option>
-          </Select>
+          <SelectLanguage />
         </div>
 
         <div style={TitleSectionStyle}>
@@ -65,10 +62,9 @@ const TitleSectionStyle = {
 }
 
 const TitleStyle = {
-  fontSize: '3rem',
+  fontSize: '3.5rem',
   fontWeight: 700,
   marginBottom: '0.25rem',
-  lineHeight: '48px'
 }
 
 const SubTitleStyle = {
