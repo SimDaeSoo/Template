@@ -15,12 +15,14 @@ class SelectLanguage extends React.Component {
         const { i18n, style } = this.props;
 
         return (
-            <Select value={i18n.language} onChange={this.changeLanguage} style={style || {}}>
+            <Select value={i18n.language} onChange={this.changeLanguage} style={{ ...DefaultStyle, ...(style || {}) }}>
                 <Select.Option value="en">{i18n.t('english')}</Select.Option>
                 <Select.Option value="ko">{i18n.t('korean')}</Select.Option>
             </Select>
         );
     }
 }
+
+const DefaultStyle = { width: '90px', textAlign: 'center' }
 
 export default withTranslation('SelectLanguage')(SelectLanguage);

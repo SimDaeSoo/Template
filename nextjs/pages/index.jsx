@@ -13,7 +13,7 @@ class Home extends HydrateComponent {
         const { auth, environment, i18n } = this.props;
 
         return (
-            <div>
+            <div style={{ textAlign: 'right' }}>
                 <RoutingButton label={`${i18n.t('new')} ${i18n.t('page')}`} link={`/new${environment.queryString}`} />
                 {!auth.hasPermission && <RoutingButton label={`${i18n.t('login')}`} link={`/login${environment.queryString}`} />}
                 {auth.hasPermission && <MyProfile />}
