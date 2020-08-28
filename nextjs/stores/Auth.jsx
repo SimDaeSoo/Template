@@ -19,7 +19,7 @@ class Auth {
         this.jwt = '';
         this.user = {};
         if (process.browser) _setCookieCSR('jwt', '');
-        Router.push(`/`);
+        Router.reload();
     }
 
     @computed get role() {
