@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "configs",
+  "info": {
+    "name": "Config"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "loginRequired": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

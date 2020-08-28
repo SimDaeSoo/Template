@@ -3,7 +3,7 @@ import NextHead from 'next/head';
 
 const defaultTitle = 'default title';
 const defaultDescription = 'default description';
-const defaultKeywords = 'keywords, keywords';
+const defaultKeywords = '';
 const defaultOGURL = '';
 const defaultOGImage = '';
 

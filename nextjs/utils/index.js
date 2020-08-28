@@ -1,6 +1,15 @@
 import axios from 'axios';
 import { stringify } from 'querystring';
 
+export async function _gerServerConfig() {
+    try {
+        const response = await axios.get(`${process.env.SSR_API_URL}/config`);
+        return response.data;
+    } catch (e) {
+        return {};
+    }
+}
+
 export async function _verifing(provider, access_token, id_token) {
     try {
         const response = await axios.get(`${process.env.SSR_API_URL}/auth/${provider}/callback?${stringify({ access_token, id_token })}`);

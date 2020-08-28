@@ -56,7 +56,7 @@ class New extends HydrateComponent {
         return (
             <div>
                 <Button type='primary' onClick={this.goToHome}>
-                    Home Page
+                    {i18n.t('home')} {i18n.t('page')}
                 </Button>
 
                 {
@@ -75,8 +75,8 @@ class New extends HydrateComponent {
                 }
 
                 <Select value={i18n.language} onChange={this.changeLanguage}>
-                    <Select.Option value="ko">Korean</Select.Option>
-                    <Select.Option value="en">English</Select.Option>
+                    <Select.Option value="ko">{i18n.t('korean')}</Select.Option>
+                    <Select.Option value="en">{i18n.t('english')}</Select.Option>
                 </Select>
             </div>
         );
@@ -84,7 +84,7 @@ class New extends HydrateComponent {
 }
 
 export async function getServerSideProps(context) {
-    const auth = await getInitializeAuthData(context);
+    const auth = await getInitializeAuthData(context, { routing: true });
 
     return { props: { initializeData: { auth, environment: { query: context.query } } } };
 }

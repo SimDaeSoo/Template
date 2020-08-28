@@ -1,7 +1,8 @@
 import { observable, action, computed } from 'mobx';
 import axios from 'axios';
+import Router from 'next/router';
 import Network from '../utils/network';
-import { _seperateAuthQuery, _getCookieSSR, _setCookieCSR, _setCookieSSR, _verifing } from '../utils';
+import { _seperateAuthQuery, _getCookieSSR, _setCookieCSR, _setCookieSSR, _verifing, _gerServerConfig } from '../utils';
 
 class Auth {
     @observable updatedAt;
@@ -18,6 +19,7 @@ class Auth {
         this.jwt = '';
         this.user = {};
         if (process.browser) _setCookieCSR('jwt', '');
+        Router.push(`/`);
     }
 
     @computed get role() {
@@ -29,7 +31,7 @@ class Auth {
     }
 }
 
-export async function getInitializeAuthData(context) {
+export async function getInitializeAuthData(context, options) {
     const { provider, access_token, id_token } = _seperateAuthQuery(context.query || {});
     const _hasAuthOption = provider && access_token && id_token;
     const _requestJWT = _getCookieSSR(context, 'jwt');
@@ -52,10 +54,11 @@ export async function getInitializeAuthData(context) {
         console.log(e);
     }
 
-    // if (!jwt) {
-    //     context.res.writeHead(303, { Location: '/login' });
-    //     context.res.end();
-    // }
+    const serverConfig = await _gerServerConfig();
+    if (!jwt && options.routing && serverConfig.loginRequired) {
+        context.res.writeHead(303, { Location: '/login' });
+        context.res.end();
+    }
 
     Network.jwt = jwt;
     return { jwt, user, updatedAt: Date.now() };

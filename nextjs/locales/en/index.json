@@ -1,5 +1,12 @@
 {
   "login": "Login",
   "logout": "Logout",
-  "register": "Register"
+  "korean": "한국어",
+  "english": "English",
+  "pageTitle": "Template",
+  "pageDescription": "Default template for creating web service",
+  "googleLogin": "Login with Google",
+  "home": "Home",
+  "new": "New",
+  "page": "Page"
 }
