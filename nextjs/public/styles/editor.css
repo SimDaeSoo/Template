@@ -512,14 +512,6 @@
     border: 1px solid #000000 !important;
 }
 
-.CodeMirror-code>div:first-child>div:first-child {
-    border-radius: 5px 5px 0 0;
-}
-
-.CodeMirror-code>div:last-child>div:first-child {
-    border-radius: 0 0 5px 5px;
-}
-
 .tui-colorpicker-palette-preview {
     width: 28px !important;
     height: 28px !important;
