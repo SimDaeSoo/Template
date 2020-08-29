@@ -11,6 +11,8 @@ import i18n from '../locales/i18n';
 
 /* Styles */
 import 'nprogress/nprogress.css';
+import 'codemirror/lib/codemirror.css';
+import '../public/styles/editor.css';
 import '../public/styles/init.css';
 
 /* Components */
