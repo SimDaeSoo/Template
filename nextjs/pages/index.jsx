@@ -6,6 +6,7 @@ import { getInitializeAuthData } from '../stores/Auth';
 import SelectLanguage from '../components/SelectLanguage';
 import MyProfile from '../components/MyProfile';
 import RoutingButton from '../components/RoutingButton';
+import DefaultLayout from '../layouts/DefaultLayout';
 const ToastEditor = dynamic(() => import('../components/Toasteditor'), { ssr: false });
 
 @inject('environment', 'auth')
@@ -15,15 +16,19 @@ class Home extends HydrateComponent {
         const { auth, environment, i18n } = this.props;
 
         return (
-            <div style={{ textAlign: 'right' }}>
-                <RoutingButton label={`${i18n.t('new')} ${i18n.t('page')}`} link={`/new${environment.queryString}`} />
-                {!auth.hasPermission && <RoutingButton label={`${i18n.t('login')}`} link={`/login${environment.queryString}`} />}
-                {auth.hasPermission && <MyProfile />}
-                <SelectLanguage />
-                <div style={{ width: '100%', height: '800px' }}>
-                    <ToastEditor />
-                </div>
-            </div>
+            <DefaultLayout>
+                <>
+                    <div style={{ height: '32px', zIndex: 2, textAlign: 'right' }}>
+                        {/* <RoutingButton label={`${i18n.t('new')} ${i18n.t('page')}`} link={`/new${environment.queryString}`} /> */}
+                        {!auth.hasPermission && <RoutingButton label={`${i18n.t('login')}`} link={`/login${environment.queryString}`} />}
+                        {auth.hasPermission && <MyProfile />}
+                        <SelectLanguage />
+                    </div>
+                    <div style={{ width: '100%', height: 'calc(100% - 32px)' }}>
+                        <ToastEditor />
+                    </div>
+                </>
+            </DefaultLayout>
         );
     }
 }

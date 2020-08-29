@@ -6,3 +6,15 @@ body,
     width: 100%;
     background-color: #151515;
 }
+
+.ant-layout-sider-zero-width-trigger.ant-layout-sider-zero-width-trigger-left {
+    top: 0;
+    right: -32px;
+    width: 32px;
+    height: 32px;
+    line-height: 34px;
+}
+
+.ant-layout {
+    background-color: #101010;
+}

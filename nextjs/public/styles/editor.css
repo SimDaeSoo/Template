@@ -212,6 +212,7 @@
 
 .tui-editor-defaultUI .CodeMirror-scroll {
     cursor: text;
+    overflow: auto !important;
 }
 
 
