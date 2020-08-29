@@ -1020,7 +1020,7 @@ only screen and (min-resolution: 2dppx) {
     font-size: 10px;
     color: #333333;
     background-color: #f9f9f9;
-    border: 1px solid #000000ddd;
+    border: 1px solid #000000;
     padding: 4px;
     height: auto;
 }
@@ -1501,7 +1501,7 @@ only screen and (min-resolution: 2dppx) {
     list-style-type: none;
     padding-left: 24px;
     margin: 6px 0 10px;
-    color: #222;
+    color: #AAAAAA;
 }
 
 .tui-editor-contents ol {
