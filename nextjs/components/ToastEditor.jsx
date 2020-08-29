@@ -1,5 +1,8 @@
 import React from 'react';
 import { Editor } from '@toast-ui/react-editor';
+import colorSyntaxPlugin from "@toast-ui/editor-plugin-color-syntax";
+import hljs from "highlight.js";
+import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 
 class ToastEditor extends React.Component {
     render() {
@@ -13,10 +16,11 @@ class ToastEditor extends React.Component {
                 useCommandShortcut={true}
                 usageStatistics={false}
                 previewHighlight={false}
-                // hooks={{
-                //     addImageBlobHook: (blob, callback) => {
-                //     }
-                // }}
+                plugins={[[codeSyntaxHighlight, { hljs }], colorSyntaxPlugin]}
+            // hooks={{
+            //     addImageBlobHook: (blob, callback) => {
+            //     }
+            // }}
             />
         )
     }

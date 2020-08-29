@@ -507,6 +507,39 @@
     margin-top: 15px;
 }
 
+.tui-popup-body input {
+    background-color: #252525;
+    border: 1px solid #000000 !important;
+}
+
+.CodeMirror-code>div:first-child>div:first-child {
+    border-radius: 5px 5px 0 0;
+}
+
+.CodeMirror-code>div:last-child>div:first-child {
+    border-radius: 0 0 5px 5px;
+}
+
+.tui-colorpicker-palette-preview {
+    width: 28px !important;
+    height: 28px !important;
+}
+
+.tui-popup-color .te-apply-button {
+    height: 28px !important;
+    width: 28px !important;
+    background: #252525 !important;
+    border: 1px solid #000000 !important;
+    bottom: 137px !important;
+    color: #EEEEEE !important;
+}
+
+.tui-popup-color .tui-colorpicker-container .tui-colorpicker-palette-hex {
+    border: 1px solid #000000 !important;
+    padding: 4px !important;
+    margin-left: 4px !important;
+}
+
 .tui-editor-popup .tui-popup-body input[type='text'],
 .tui-editor-popup .tui-popup-body input[type='file'] {
     padding: 4px 10px;
@@ -957,15 +990,15 @@ only screen and (min-resolution: 2dppx) {
 }
 
 .tui-colorpicker-svg-slider {
-    border: 1px solid #ebebeb;
+    border: 1px solid #000000;
 }
 
 .tui-colorpicker-vml-slider {
-    border: 1px solid #ebebeb;
+    border: 1px solid #000000;
 }
 
 .tui-colorpicker-svg-huebar {
-    border: 1px solid #ebebeb;
+    border: 1px solid #000000;
 }
 
 .tui-editor-pseudo-clipboard {
@@ -1408,7 +1441,7 @@ only screen and (min-resolution: 2dppx) {
 .tui-editor-contents code {
     font-family: Consolas, Courier, 'Apple SD 산돌고딕 Neo', -apple-system, 'Lucida Grande', 'Apple SD Gothic Neo', '맑은 고딕', 'Malgun Gothic', 'Segoe UI', '돋움', dotum, sans-serif;
     border: 0;
-    border-radius: 0;
+    border-radius: 5px;
 }
 
 .tui-editor-contents pre {
