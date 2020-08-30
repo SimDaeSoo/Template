@@ -57,7 +57,7 @@ class ToastEditor extends React.Component {
                     initialEditType="wysiwyg"
                     useCommandShortcut={true}
                     usageStatistics={false}
-                    previewHighlight={true}
+                    previewHighlight={false}
                     plugins={[[codeSyntaxHighlight, { hljs }], colorSyntaxPlugin]}
                 // hooks={{
                 //     addImageBlobHook: (blob, callback) => {
