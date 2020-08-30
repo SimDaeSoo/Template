@@ -24,7 +24,7 @@ class Home extends HydrateComponent {
                         {auth.hasPermission && <MyProfile />}
                         <SelectLanguage />
                     </div>
-                    <div style={{ width: '100%', height: 'calc(100% - 32px)' }}>
+                    <div style={{ position: 'relative', width: '100%', height: 'calc(100% - 32px)', maxWidth: '1280px', margin: 'auto' }}>
                         <ToastEditor />
                     </div>
                 </>
