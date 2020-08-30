@@ -64,7 +64,7 @@ class ToastEditor extends React.Component {
                 //     }
                 // }}
                 />
-                <div style={{ position: 'absolute', bottom: '32px', right: '12px' }}>
+                <div style={ButtonStyle}>
                     <Button type="primary" icon={<SaveOutlined />} loading={true}>
                         Save
                     </Button>
@@ -74,6 +74,16 @@ class ToastEditor extends React.Component {
     }
 }
 
-const EditorStyle = { width: '100%', height: '100%', position: 'relative' };
+const EditorStyle = {
+    width: '100%',
+    height: '100%',
+    position: 'relative'
+};
+
+const ButtonStyle = {
+    position: 'absolute',
+    bottom: '32px',
+    right: '12px'
+};
 
 export default ToastEditor;

@@ -18,11 +18,11 @@ class MyProfile extends React.Component {
         return (
             <Menu>
                 <Menu.Item disabled={true}>
-                    <Tag icon={<UserOutlined style={{ margin: 0 }} />} color='blue' style={{ margin: '2px' }}>{auth.user.username}</Tag>
-                    <Tag color='geekblue' style={{ margin: '2px' }}>{auth.user.role.name}</Tag>
+                    <Tag icon={<UserOutlined style={NoMarginStyle} />} color='blue' style={TagStyle}>{auth.user.username}</Tag>
+                    <Tag color='geekblue' style={TagStyle}>{auth.user.role.name}</Tag>
                 </Menu.Item>
                 <Menu.Item disabled={true}>
-                    <Tag icon={<MailOutlined style={{ margin: 0 }} />} color='magenta' style={{ margin: '2px' }}>{auth.user.email}</Tag>
+                    <Tag icon={<MailOutlined style={NoMarginStyle} />} color='magenta' style={TagStyle}>{auth.user.email}</Tag>
                 </Menu.Item>
                 <Menu.Item onClick={this.logout}>
                     <ExportOutlined />
@@ -43,6 +43,17 @@ class MyProfile extends React.Component {
     }
 }
 
-const AvatarStyle = { verticalAlign: 'bottom', margin: '0 2px' };
+const TagStyle = {
+    margin: '2px'
+};
+
+const NoMarginStyle = {
+    margin: 0
+};
+
+const AvatarStyle = {
+    verticalAlign: 'bottom',
+    margin: '0 2px'
+};
 
 export default withTranslation('MyProfile')(MyProfile);

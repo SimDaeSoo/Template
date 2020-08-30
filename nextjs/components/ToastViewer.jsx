@@ -55,7 +55,7 @@ class ToastViewer extends React.Component {
                     plugins={[[codeSyntaxHighlight, { hljs }]]}
                 />
 
-                <div style={{ position: 'absolute', bottom: '12px', right: '12px' }}>
+                <div style={ButtonStyle}>
                     <Button type="primary" icon={<EditOutlined />} loading={false}>
                         Edit
                     </Button>
@@ -66,5 +66,11 @@ class ToastViewer extends React.Component {
 }
 
 const ViewerStyle = { width: '100%', minHeight: '100%', height: 'auto', position: 'relative' };
+
+const ButtonStyle = {
+    position: 'absolute',
+    bottom: '32px',
+    right: '12px'
+};
 
 export default ToastViewer;

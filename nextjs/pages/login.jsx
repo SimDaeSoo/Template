@@ -33,7 +33,7 @@ class Login extends HydrateComponent {
             {i18n.t('pageTitle')}
           </p>
 
-          <Carousel autoplay style={{ paddingBottom: '20px' }}>
+          <Carousel autoplay style={DescriptionStyle}>
             <div><p style={SubTitleStyle}>{i18n.t('pageDescription1')}</p></div>
             <div><p style={SubTitleStyle}>{i18n.t('pageDescription2')}</p></div>
             <div><p style={SubTitleStyle}>{i18n.t('pageDescription3')}</p></div>
@@ -57,37 +57,41 @@ const LoginPageStyle = {
   height: '100%',
   width: '100%',
   backgroundColor: '#202020'
-}
+};
 
 const TitleSectionStyle = {
   padding: '0 2rem',
   margin: 'auto',
   textAlign: 'center',
   width: '100%'
-}
+};
 
 const TitleStyle = {
   fontSize: '3.5rem',
   fontWeight: 700,
   marginBottom: '0.25rem',
-}
+};
 
 const SubTitleStyle = {
   fontSize: '1.7rem',
   fontWeight: 400
-}
+};
 
 const LoginFormStyle = {
   width: '220px',
   margin: 'auto'
-}
+};
 
 const LanguageSelectboxStyle = {
   position: 'absolute',
   right: '15px',
   top: '15px',
   display: 'flex'
-}
+};
+
+const DescriptionStyle = {
+  paddingBottom: '20px'
+};
 
 export async function getServerSideProps(context) {
   const auth = await getInitializeAuthData(context, { routing: false });
