@@ -10,5 +10,7 @@
     "googleLogin": "구글 계정 로그인",
     "home": "홈",
     "new": "새로운",
-    "page": "페이지"
+    "page": "페이지",
+    "replyTo": "댓글 달기",
+    "replyDelete": "댓글 삭제"
 }

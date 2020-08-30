@@ -10,5 +10,7 @@
     "googleLogin": "Login with Google",
     "home": "Home",
     "new": "New",
-    "page": "Page"
+    "page": "Page",
+    "replyTo": "reply to",
+    "replyDelete": "remove"
 }

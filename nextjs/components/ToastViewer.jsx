@@ -1,4 +1,5 @@
 import React from 'react';
+import { withTranslation } from "react-i18next";
 import { Button } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 import { Viewer } from '@toast-ui/react-editor';
@@ -73,4 +74,4 @@ const ButtonStyle = {
     right: '12px'
 };
 
-export default ToastViewer;
+export default withTranslation('ToastViewer')(ToastViewer);

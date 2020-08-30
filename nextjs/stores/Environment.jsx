@@ -2,6 +2,7 @@ import { observable, action, computed } from 'mobx';
 import { stringify } from 'querystring';
 import Router from 'next/router';
 import i18n from '../locales/i18n';
+import moment from 'moment';
 
 class Environment {
     @observable query = {};
@@ -9,6 +10,9 @@ class Environment {
     hydrate(initializeData) {
         this.query = initializeData.query || {};
         i18n.changeLanguage(this.language);
+        if (moment.locale) {
+            moment.locale(this.language);
+        }
     }
 
     @action set(key, value) {

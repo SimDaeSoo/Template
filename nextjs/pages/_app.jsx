@@ -1,5 +1,6 @@
 import React from 'react';
 import App from 'next/app';
+import 'moment/locale/ko';
 
 /* MobX */
 import { Provider } from 'mobx-react';

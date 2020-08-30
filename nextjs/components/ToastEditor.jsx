@@ -1,4 +1,5 @@
 import React from 'react';
+import { withTranslation } from "react-i18next";
 import { Editor } from '@toast-ui/react-editor';
 import colorSyntaxPlugin from "@toast-ui/editor-plugin-color-syntax";
 import hljs from "highlight.js";
@@ -86,4 +87,4 @@ const ButtonStyle = {
     right: '12px'
 };
 
-export default ToastEditor;
+export default withTranslation('ToastEditor')(ToastEditor);
