@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
 import { Viewer } from '@toast-ui/react-editor';
 import hljs from "highlight.js";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
@@ -52,6 +54,12 @@ class ToastViewer extends React.Component {
                     initialValue={text}
                     plugins={[[codeSyntaxHighlight, { hljs }]]}
                 />
+
+                <div style={{ position: 'absolute', bottom: '12px', right: '12px' }}>
+                    <Button type="primary" icon={<EditOutlined />} loading={false}>
+                        Edit
+                    </Button>
+                </div>
             </div>
         )
     }

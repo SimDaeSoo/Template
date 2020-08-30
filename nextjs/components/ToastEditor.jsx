@@ -65,7 +65,7 @@ class ToastEditor extends React.Component {
                 // }}
                 />
                 <div style={{ position: 'absolute', bottom: '32px', right: '12px' }}>
-                    <Button type="primary" icon={<SaveOutlined />}>
+                    <Button type="primary" icon={<SaveOutlined />} loading={true}>
                         Save
                     </Button>
                 </div>

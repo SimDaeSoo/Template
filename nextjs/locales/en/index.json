@@ -1,12 +1,14 @@
 {
-  "login": "Login",
-  "logout": "Logout",
-  "korean": "한국어",
-  "english": "English",
-  "pageTitle": "Template",
-  "pageDescription": "Default template for creating web service",
-  "googleLogin": "Login with Google",
-  "home": "Home",
-  "new": "New",
-  "page": "Page"
+    "login": "Login",
+    "logout": "Logout",
+    "korean": "한국어",
+    "english": "English",
+    "pageTitle": "Template",
+    "pageDescription1": "Default template for creating web service",
+    "pageDescription2": "Make your web service easy",
+    "pageDescription3": "Using Next.js, Strapi, MySQL, Ant Design, Toast UI Editor 2.0",
+    "googleLogin": "Login with Google",
+    "home": "Home",
+    "new": "New",
+    "page": "Page"
 }

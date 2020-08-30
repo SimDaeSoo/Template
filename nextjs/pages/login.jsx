@@ -3,6 +3,7 @@ import { observer, inject } from 'mobx-react';
 import { withTranslation } from 'react-i18next';
 import HydrateComponent from '../components/HydrateComponent';
 import { getInitializeAuthData } from '../stores/Auth';
+import { Carousel } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
 import SelectLanguage from '../components/SelectLanguage';
 
@@ -32,9 +33,11 @@ class Login extends HydrateComponent {
             {i18n.t('pageTitle')}
           </p>
 
-          <p style={SubTitleStyle}>
-            {i18n.t('pageDescription')}
-          </p>
+          <Carousel autoplay style={{ paddingBottom: '20px' }}>
+            <div><p style={SubTitleStyle}>{i18n.t('pageDescription1')}</p></div>
+            <div><p style={SubTitleStyle}>{i18n.t('pageDescription2')}</p></div>
+            <div><p style={SubTitleStyle}>{i18n.t('pageDescription3')}</p></div>
+          </Carousel>
 
           <div style={LoginFormStyle}>
             <a className='ant-btn ant-btn-lg ant-btn-primary ant-btn-block ss-login' href={`/connect/google`}>
@@ -52,13 +55,15 @@ class Login extends HydrateComponent {
 const LoginPageStyle = {
   display: 'flex',
   height: '100%',
-  width: '100%'
+  width: '100%',
+  backgroundColor: '#202020'
 }
 
 const TitleSectionStyle = {
   padding: '0 2rem',
   margin: 'auto',
   textAlign: 'center',
+  width: '100%'
 }
 
 const TitleStyle = {
