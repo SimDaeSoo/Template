@@ -2,7 +2,6 @@ import React from 'react';
 import Router from 'next/router';
 import { Button } from 'antd';
 
-
 class RoutingButton extends React.Component {
     login = (link) => {
         Router.push(link);

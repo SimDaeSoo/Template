@@ -7,7 +7,7 @@ import SelectLanguage from '../components/SelectLanguage';
 import MyProfile from '../components/MyProfile';
 import RoutingButton from '../components/RoutingButton';
 import DefaultLayout from '../layouts/DefaultLayout';
-const ToastEditor = dynamic(() => import('../components/Toasteditor'), { ssr: false });
+const ToastViewer = dynamic(() => import('../components/ToastViewer'), { ssr: false });
 
 @inject('environment', 'auth')
 @observer
@@ -19,14 +19,14 @@ class New extends HydrateComponent {
             <DefaultLayout>
                 <>
                     <div style={{ height: '100%' }}>
-                        <div style={{ height: '32px', zIndex: 2, textAlign: 'right' }}>
+                        <div style={{ height: '32px', zIndex: 2, textAlign: 'right', backgroundColor: '#101010' }}>
                             {/* <RoutingButton label={`${i18n.t('home')} ${i18n.t('page')}`} link={`/${environment.queryString}`} /> */}
                             {!auth.hasPermission && <RoutingButton label={`${i18n.t('login')}`} link={`/login${environment.queryString}`} />}
                             {auth.hasPermission && <MyProfile />}
                             <SelectLanguage />
                         </div>
                         <div style={{ width: '100%', height: 'calc(100% - 32px)' }}>
-                            <ToastEditor />
+                            <ToastViewer />
                         </div>
                     </div>
                 </>

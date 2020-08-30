@@ -15,7 +15,7 @@ class DefaultLayout extends React.Component {
                     onCollapse={(collapsed, type) => {
                     }}
                 >
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
+                    <Menu mode="inline" defaultSelectedKeys={['4']}>
                         <Menu.Item key="1" icon={<UserOutlined />}>
                             Menu Example
                         </Menu.Item>
