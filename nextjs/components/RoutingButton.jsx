@@ -8,10 +8,10 @@ class RoutingButton extends React.Component {
     }
 
     render() {
-        const { label, link, style } = this.props;
+        const { label, link, style, type } = this.props;
 
         return (
-            <Button type='primary' onClick={() => { this.login(link) }} style={style || {}}>
+            <Button type={type} onClick={() => { this.login(link) }} style={style || {}}>
                 {label}
             </Button>
         );

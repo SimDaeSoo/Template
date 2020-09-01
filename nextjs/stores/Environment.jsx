@@ -6,6 +6,7 @@ import moment from 'moment';
 
 class Environment {
     @observable query = {};
+    @observable size = 'default';
 
     hydrate(initializeData) {
         this.query = initializeData.query || {};

@@ -5,32 +5,28 @@ import SelectLanguage from '../components/SelectLanguage';
 import MyProfile from '../components/MyProfile';
 import RoutingButton from '../components/RoutingButton';
 
+import { Button } from 'antd';
+import { HomeOutlined } from '@ant-design/icons';
+
 @inject('environment', 'auth')
 @observer
 class HeaderLayout extends React.Component {
     render() {
-        const { auth, environment, i18n } = this.props;
+        const { auth, environment, i18n, style } = this.props;
 
         return (
-            <div style={HEADER_STYLE}>
-                {!auth.hasPermission && <RoutingButton label={`${i18n.t('login')}`} link={`/login${environment.queryString}`} />}
+            <div style={style}>
+                <Button icon={<HomeOutlined />} type='link' style={{ left: '0', position: 'absolute' }} >{i18n.t('goToHome')}</Button>
                 {auth.hasPermission && <MyProfile />}
+                {!auth.hasPermission && <RoutingButton label={`${i18n.t('login')}`} link={`/login${environment.queryString}`} style={MarginRightStyle} />}
                 <SelectLanguage />
             </div>
         )
     }
 }
 
-const HEADER_STYLE = {
-    height: '32px',
-    width: '100%',
-    zIndex: 2,
-    textAlign: 'right',
-    backgroundColor: '#101010',
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    boxShadow: '0px 6px 6px 0px rgba(0, 0, 0, 0.3)'
+const MarginRightStyle = {
+    marginRight: '2px'
 };
 
 export default withTranslation('HeaderLayout')(HeaderLayout);

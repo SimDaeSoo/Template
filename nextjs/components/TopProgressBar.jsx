@@ -14,7 +14,7 @@ const stop = () => {
     if (store.activeRequests > 0) return;
     store.state = "stop";
     clearTimeout(store.timer);
-    NProgress.done();
+    NProgress.done(true);
 }
 
 const originalFetch = window.fetch;
@@ -41,7 +41,7 @@ axios.interceptors.response.use(response => {
     return response
 });
 
-NProgress.configure({ showSpinner: false });
+NProgress.configure({ showSpinner: false, speed: 300 });
 Router.events.on("routeChangeStart", load);
 Router.events.on("routeChangeComplete", stop);
 Router.events.on("routeChangeError", stop);

@@ -47,13 +47,13 @@ class _App extends App {
 
         return (
             <>
-                <TopProgressBar />
                 <I18nextProvider i18n={i18n}>
                     <Provider {...this.store}>
                         <Head title={i18n.t('pageTitle')} description={i18n.t('pageDescription')} />
                         <Component {...pageProps} hydrate={this.hydrate} />
                     </Provider>
                 </I18nextProvider>
+                <TopProgressBar />
             </>
         );
     }

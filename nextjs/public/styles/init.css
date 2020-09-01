@@ -5,19 +5,25 @@ body,
     height: 100%;
     width: 100%;
     background-color: #151515;
+    overflow: hidden;
+}
+
+#nprogress {
+    position: relative;
+    z-index: 9999999;
 }
 
 .ant-comment-inner {
     border: 1px solid #404040;
     padding: 12px 12px;
-    width: fit-content;
     max-width: 100%;
     border-radius: 6px;
     margin: 4px;
 }
 
 .ant-layout-sider-zero-width-trigger.ant-layout-sider-zero-width-trigger-left {
-    top: 0px;
+    border: 1px solid black;
+    top: 38px;
     right: -28px;
     width: 28px;
     height: 32px;
@@ -41,7 +47,7 @@ body,
 }
 
 .ant-layout-sider {
-    z-index: 3;
+    z-index: 6;
     background-color: #141414;
 }
 
@@ -49,4 +55,97 @@ body,
 .ant-menu-vertical,
 .ant-menu-vertical-left {
     border-right: none;
+}
+
+.mirror_x {
+    transform: rotate(0deg);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.owner>.ant-comment-inner{
+    background-color:#151515
+}
+
+.ant-comment-nested {
+    margin-left: 12px;
+}
+
+.ant-layout-sider {
+    position: fixed;
+    height: 100%;
+}
+
+.ant-layout-sider-children {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.ant-layout-sider-zero-width-trigger:hover {
+    background-color: #1F1F1F
+}
+
+.ant-layout-content {
+    flex: none;
+}
+
+.ant-btn-primary {
+    border-color: #434343;
+}
+
+.ant-comment-avatar img {
+    border-radius: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.article_title {
+    font-size: 3.5em;
+    padding: 12px;
+}
+
+.article_description {
+    background-color: #202020;
+    padding: 24px;
+    margin: 10px 4px;
+    border-radius: 10px;
+}
+
+.card-description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+}
+
+.ant-card-body {
+    padding: 16px;
+}
+.ant-card-meta-avatar {
+    padding-right: 12px;
+}
+
+.ant-card-meta-description {
+    height: 88px;
+}
+
+.ant-card-actions {
+    border: none;
+}
+
+.ant-card-actions > li {
+    margin: 0;
+    padding: 4px;
+}
+
+@media (max-width: 425px) {
+    .article_title {
+        font-size: 2em;
+    }
 }

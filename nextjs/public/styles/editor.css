@@ -9,6 +9,11 @@
 
 /* height */
 
+.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+    position: absolute;
+    z-index: 3;
+}
+
 .tui-viewer {
     width: 100%;
     height: 100%;
@@ -189,12 +194,12 @@
 
 .te-md-mode .te-md-container {
     display: block;
-    z-index: 100;
+    z-index: 2;
 }
 
 .te-ww-mode .te-ww-container {
     display: block;
-    z-index: 100;
+    z-index: 2;
 }
 
 .tui-editor.te-hide,
@@ -391,7 +396,7 @@
     line-height: 100%;
     position: relative;
     cursor: pointer;
-    z-index: 1;
+    z-index: 3;
     font-size: 13px;
     background-color: #252525;
     border: solid 1px #e5e5e5;
@@ -411,7 +416,7 @@
     background-color: #202020;
     color: #333;
     border-bottom: 1px solid #fff;
-    z-index: 2;
+    z-index: 4;
 }
 
 .te-markdown-tab-section .te-tab button:hover {
@@ -427,7 +432,7 @@
     top: 0px;
     width: 100%;
     height: 100%;
-    z-index: 9999;
+    z-index: 3;
 }
 
 .tui-popup-wrapper.fit-window,
@@ -441,7 +446,7 @@
     margin-right: auto;
     border: 1px solid #000000;
     background: #161616;
-    z-index: 9999;
+    z-index: 3;
 }
 
 .tui-popup-modal-background .tui-popup-wrapper {
@@ -613,7 +618,7 @@
     left: 0;
     background: #80d2ff;
     opacity: 0.3;
-    z-index: 999;
+    z-index: 2;
 }
 
 .te-popup-add-table .te-description {
@@ -803,7 +808,7 @@
 .tui-tooltip {
     position: absolute;
     background-color: #222;
-    z-index: 999;
+    z-index: 2;
     opacity: 0.8;
     color: #fff;
     padding: 2px 5px;
@@ -1019,7 +1024,7 @@ only screen and (min-resolution: 2dppx) {
     font-size: 10px;
     font-weight: 600;
     padding: 0px 10px;
-    color: #333333;
+    color: white;
     cursor: default;
 }
 
@@ -1081,7 +1086,7 @@ only screen and (min-resolution: 2dppx) {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 10px;
     padding: 3px 5px;
-    border: 1px solid #000000ddd;
+    border: 1px solid #000000;
     background-color: #f9f9f9;
     box-sizing: border-box;
     width: 130px;
@@ -1449,6 +1454,10 @@ only screen and (min-resolution: 2dppx) {
     margin: 12px 0 12px;
     padding: 18px;
     background-color: #353535;
+    /* width: fit-content;
+    max-width: calc(100% - 36px); */
+}
+.tui-viewer .tui-editor-contents pre {
     width: fit-content;
     max-width: calc(100% - 36px);
 }

@@ -2,9 +2,9 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Tag, Avatar, Menu, Dropdown } from 'antd';
-import { ExportOutlined, MailOutlined, UserOutlined } from '@ant-design/icons';
+import { ExportOutlined, MailOutlined, UserOutlined, SettingOutlined, HomeOutlined } from '@ant-design/icons';
 
-@inject('auth')
+@inject('auth', 'environment')
 @observer
 class MyProfile extends React.Component {
     logout = () => {
@@ -24,6 +24,14 @@ class MyProfile extends React.Component {
                 <Menu.Item disabled={true}>
                     <Tag icon={<MailOutlined style={NoMarginStyle} />} color='magenta' style={TagStyle}>{auth.user.email}</Tag>
                 </Menu.Item>
+                <Menu.Item>
+                    <UserOutlined />
+                    {i18n.t('my')} {i18n.t('page')}
+                </Menu.Item>
+                <Menu.Item>
+                    <SettingOutlined />
+                    {i18n.t('settings')}
+                </Menu.Item>
                 <Menu.Item onClick={this.logout}>
                     <ExportOutlined />
                     {i18n.t('logout')}
@@ -33,10 +41,10 @@ class MyProfile extends React.Component {
     }
 
     render() {
-        const { auth, style } = this.props;
+        const { auth, environment, style } = this.props;
 
         return (
-            <Dropdown overlay={this.menu}>
+            <Dropdown overlay={this.menu} trigger={environment.size === 'small' ? 'click' : 'hover'}>
                 <Avatar shape="square" src={auth.user.thumbnail} style={{ ...AvatarStyle, ...(style || {}) }} />
             </Dropdown>
         );
@@ -53,7 +61,10 @@ const NoMarginStyle = {
 
 const AvatarStyle = {
     verticalAlign: 'bottom',
-    margin: '0 2px'
+    margin: '0 2px',
+    border: '1px solid rgba(255,255,255,0.3)',
+    borderRadius: '4px',
+    backgroundColor: 'rgba(0,0,0,0.3)'
 };
 
 export default withTranslation('MyProfile')(MyProfile);

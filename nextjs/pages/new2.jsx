@@ -1,11 +1,9 @@
-import dynamic from 'next/dynamic';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import HydrateComponent from '../components/HydrateComponent';
 import { getInitializeAuthData } from '../stores/Auth';
 import DefaultLayout from '../layouts/DefaultLayout';
-import Loading from '../components/Loading';
-const ArticleViewer = dynamic(() => import('../components/ArticleViewer'), { ssr: false, loading: () => <Loading /> });
+import ArticleCard from '../components/ArticleCard';
 
 const article = {
     id: 1,
@@ -115,30 +113,32 @@ resources (Sketch and Axure), to help people create their product prototypes bea
 
 @inject('environment', 'auth')
 @observer
-class New extends HydrateComponent {
+class New2 extends HydrateComponent {
     render() {
         return (
             <DefaultLayout>
-                <div style={ArticleViewerStyle}>
-                    <ArticleViewer article={article} />
-                </div>
-            </DefaultLayout>
+                <div style={{ width: '100%', minHeight: '100%', padding: '5px', textAlign: 'center', display: 'flex', position: 'relative' }}>
+                    <div style={{ margin: 'auto' }}>
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                    </div>
+                </div >
+            </DefaultLayout >
         );
     }
 }
-
-const ArticleViewerStyle = {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    maxWidth: '1280px',
-    margin: 'auto'
-};
-
 export async function getServerSideProps(context) {
     const auth = await getInitializeAuthData(context, { routing: true });
 
     return { props: { initializeData: { auth, environment: { query: context.query } } } };
 }
 
-export default withTranslation('New')(New);
+export default withTranslation('New2')(New2);
