@@ -13,6 +13,11 @@ class HeaderLayout extends React.Component {
 
         return (
             <div style={style}>
+                <div style={{ ...TitleStyle, padding: environment.size === 'small' ? '5px 40px' : '5px 16px' }}>
+                    <a style={LinkStyle}>
+                        Develop Template
+                    </a>
+                </div>
                 {auth.hasPermission && <MyProfile />}
                 {!auth.hasPermission && <RoutingButton label={`${i18n.t('login')}`} link={`/login${environment.queryString}`} style={MarginRightStyle} />}
                 <SelectLanguage />
@@ -24,5 +29,17 @@ class HeaderLayout extends React.Component {
 const MarginRightStyle = {
     marginRight: '2px'
 };
+
+const TitleStyle = {
+    position: 'absolute',
+    left: 0,
+    height: '32px',
+    fontSize: '1.2em',
+    fontFamily: 'fantasy'
+}
+
+const LinkStyle = {
+    color: 'white'
+}
 
 export default withTranslation('HeaderLayout')(HeaderLayout);
