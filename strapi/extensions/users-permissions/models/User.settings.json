@@ -55,6 +55,12 @@
     },
     "thumbnail": {
       "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
     }
   }
 }

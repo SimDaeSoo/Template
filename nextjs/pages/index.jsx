@@ -65,7 +65,9 @@ $ docker-compose up
         id: 1,
         thumbnail: 'https://lh4.googleusercontent.com/-wJvrImIGWJw/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnIeqbblpLA2rG1HIg3VcZzbkiong/photo.jpg',
         username: '심대수(빅딜)',
-        email: 'tlaeotn123@naver.com'
+        email: 'tlaeotn123@naver.com',
+        link: 'https://github.com/SimDaeSoo',
+        message: '"Hello World?"'
     },
     comments: [
         {
@@ -76,7 +78,9 @@ $ docker-compose up
                 id: 1,
                 thumbnail: 'https://lh4.googleusercontent.com/-wJvrImIGWJw/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnIeqbblpLA2rG1HIg3VcZzbkiong/photo.jpg',
                 username: '심대수(빅딜)',
-                email: 'tlaeotn123@naver.com'
+                email: 'tlaeotn123@naver.com',
+                link: 'https://github.com/SimDaeSoo',
+                message: '"Hello World?"'
             },
             content: `We supply a series of design principles, practical patterns and high quality design
 resources (Sketch and Axure), to help people create their product prototypes beautifully`,
@@ -89,7 +93,9 @@ resources (Sketch and Axure), to help people create their product prototypes bea
                         id: 1,
                         thumbnail: 'https://lh4.googleusercontent.com/-wJvrImIGWJw/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnIeqbblpLA2rG1HIg3VcZzbkiong/photo.jpg',
                         username: '심대수(빅딜)',
-                        email: 'tlaeotn123@gmail.com'
+                        email: 'tlaeotn123@gmail.com',
+                        link: 'https://github.com/SimDaeSoo',
+                        message: '"Hello World?"'
                     },
                     content: `TestTest`,
                     comments: [
@@ -101,7 +107,9 @@ resources (Sketch and Axure), to help people create their product prototypes bea
                                 id: 2,
                                 thumbnail: 'https://lh4.googleusercontent.com/-wJvrImIGWJw/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnIeqbblpLA2rG1HIg3VcZzbkiong/photo.jpg',
                                 username: '심대수(빅딜)',
-                                email: 'tlaeotn123@gmail.com'
+                                email: 'tlaeotn123@gmail.com',
+                                link: 'https://github.com/SimDaeSoo',
+                                message: '"Hello World?"'
                             },
                             content: `TestTest`,
                             comments: []

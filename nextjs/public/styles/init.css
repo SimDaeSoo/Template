@@ -22,13 +22,14 @@ body,
 }
 
 .ant-layout-sider-zero-width-trigger.ant-layout-sider-zero-width-trigger-left {
-    border: 1px solid black;
-    top: 38px;
-    right: -28px;
-    width: 28px;
-    height: 32px;
-    line-height: 34px;
+    border: none;
+    top: 0;
+    right: -36px;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
     z-index: -1;
+    font-size: 1.6em;
 }
 
 .ant-layout {

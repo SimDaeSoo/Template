@@ -2,7 +2,7 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Tag, Avatar, Menu, Dropdown } from 'antd';
-import { ExportOutlined, MailOutlined, UserOutlined, SettingOutlined, HomeOutlined } from '@ant-design/icons';
+import { ExportOutlined, MailOutlined, UserOutlined, SettingOutlined, LinkOutlined, MessageFilled, LockOutlined } from '@ant-design/icons';
 
 @inject('auth', 'environment')
 @observer
@@ -18,15 +18,17 @@ class MyProfile extends React.Component {
         return (
             <Menu>
                 <Menu.Item disabled={true}>
-                    <Tag icon={<UserOutlined style={NoMarginStyle} />} color='blue' style={TagStyle}>{auth.user.username}</Tag>
-                    <Tag color='geekblue' style={TagStyle}>{auth.user.role.name}</Tag>
+                    <Tag icon={<UserOutlined style={NoMarginStyle} />} style={TagStyle}>{auth.user.username}</Tag>
+                    <Tag icon={<LockOutlined style={NoMarginStyle} />} style={TagStyle}>{auth.user.role.name}</Tag>
                 </Menu.Item>
                 <Menu.Item disabled={true}>
-                    <Tag icon={<MailOutlined style={NoMarginStyle} />} color='magenta' style={TagStyle}>{auth.user.email}</Tag>
+                    <Tag icon={<MailOutlined style={NoMarginStyle} />} style={TagStyle}>{auth.user.email}</Tag>
                 </Menu.Item>
-                <Menu.Item>
-                    <UserOutlined />
-                    {i18n.t('my')} {i18n.t('page')}
+                <Menu.Item disabled={true}>
+                    <Tag icon={<LinkOutlined style={NoMarginStyle} />} style={TagStyle}>{auth.user.link}</Tag>
+                </Menu.Item>
+                <Menu.Item disabled={true}>
+                    <Tag icon={<MessageFilled style={NoMarginStyle} />} color='blue' style={TagStyle}>{auth.user.message}</Tag>
                 </Menu.Item>
                 <Menu.Item>
                     <SettingOutlined />
@@ -45,7 +47,9 @@ class MyProfile extends React.Component {
 
         return (
             <Dropdown overlay={this.menu} trigger={environment.size === 'small' ? 'click' : 'hover'}>
-                <Avatar shape="square" src={auth.user.thumbnail} style={{ ...AvatarStyle, ...(style || {}) }} />
+                <a>
+                    <Avatar shape="square" src={auth.user.thumbnail} style={{ ...AvatarStyle, ...(style || {}) }} />
+                </a>
             </Dropdown>
         );
     }

@@ -1,10 +1,12 @@
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
-import HydrateComponent from '../components/HydrateComponent';
-import { getInitializeAuthData } from '../stores/Auth';
-import DefaultLayout from '../layouts/DefaultLayout';
-import ArticleCard from '../components/ArticleCard';
+import HydrateComponent from '../../components/HydrateComponent';
+import { getInitializeAuthData } from '../../stores/Auth';
+import DefaultLayout from '../../layouts/DefaultLayout';
+import ArticleCard from '../../components/ArticleCard';
 
+
+import { Pagination } from 'antd';
 const article = {
     id: 1,
     title: '초보를 위한 도커 안내서 - 도커란 무엇인가?',
@@ -63,7 +65,9 @@ $ docker-compose up
         id: 1,
         thumbnail: 'https://lh4.googleusercontent.com/-wJvrImIGWJw/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnIeqbblpLA2rG1HIg3VcZzbkiong/photo.jpg',
         username: '심대수(빅딜)',
-        email: 'tlaeotn123@naver.com'
+        email: 'tlaeotn123@naver.com',
+        link: 'https://github.com/SimDaeSoo',
+        message: '"Hello World?"'
     },
     comments: [
         {
@@ -74,7 +78,9 @@ $ docker-compose up
                 id: 1,
                 thumbnail: 'https://lh4.googleusercontent.com/-wJvrImIGWJw/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnIeqbblpLA2rG1HIg3VcZzbkiong/photo.jpg',
                 username: '심대수(빅딜)',
-                email: 'tlaeotn123@naver.com'
+                email: 'tlaeotn123@naver.com',
+                link: 'https://github.com/SimDaeSoo',
+                message: '"Hello World?"'
             },
             content: `We supply a series of design principles, practical patterns and high quality design
 resources (Sketch and Axure), to help people create their product prototypes beautifully`,
@@ -87,7 +93,9 @@ resources (Sketch and Axure), to help people create their product prototypes bea
                         id: 1,
                         thumbnail: 'https://lh4.googleusercontent.com/-wJvrImIGWJw/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnIeqbblpLA2rG1HIg3VcZzbkiong/photo.jpg',
                         username: '심대수(빅딜)',
-                        email: 'tlaeotn123@gmail.com'
+                        email: 'tlaeotn123@gmail.com',
+                        link: 'https://github.com/SimDaeSoo',
+                        message: '"Hello World?"'
                     },
                     content: `TestTest`,
                     comments: [
@@ -99,7 +107,9 @@ resources (Sketch and Axure), to help people create their product prototypes bea
                                 id: 2,
                                 thumbnail: 'https://lh4.googleusercontent.com/-wJvrImIGWJw/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnIeqbblpLA2rG1HIg3VcZzbkiong/photo.jpg',
                                 username: '심대수(빅딜)',
-                                email: 'tlaeotn123@gmail.com'
+                                email: 'tlaeotn123@gmail.com',
+                                link: 'https://github.com/SimDaeSoo',
+                                message: '"Hello World?"'
                             },
                             content: `TestTest`,
                             comments: []
@@ -115,10 +125,11 @@ resources (Sketch and Axure), to help people create their product prototypes bea
 @observer
 class New2 extends HydrateComponent {
     render() {
+        const { environment } = this.props;
         return (
             <DefaultLayout>
                 <div style={{ width: '100%', minHeight: '100%', padding: '5px', textAlign: 'center', display: 'flex', position: 'relative' }}>
-                    <div style={{ margin: 'auto' }}>
+                    <div style={{ margin: 'auto', paddingBottom: '30px' }}>
                         <ArticleCard article={article} />
                         <ArticleCard article={article} />
                         <ArticleCard article={article} />
@@ -129,6 +140,9 @@ class New2 extends HydrateComponent {
                         <ArticleCard article={article} />
                         <ArticleCard article={article} />
                         <ArticleCard article={article} />
+                    </div>
+                    <div style={{ width: environment.size === 'small' ? '100%' : 'calc(100% - 240px)', height: '40px', position: 'fixed', bottom: 0, left: environment.size === 'small' ? 0 : 240, backgroundColor: 'rgba(30,30,30,0.7)', padding: '4px' }}>
+                        <Pagination total={10} showSizeChanger={false} />
                     </div>
                 </div >
             </DefaultLayout >

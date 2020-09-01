@@ -110,7 +110,7 @@ class ArticleEditor extends React.Component {
                 customRequest={this.onThumbnailChange}
                 showUploadList={false}
               >
-                <Button icon={<CameraOutlined />} style={VerticalBottomStyle}></Button>
+                <Button icon={<CameraOutlined />}></Button>
               </Upload>
             </Tooltip>
           </div>
@@ -169,10 +169,6 @@ const SelectCategoryWrapperStyle = {
   position: 'absolute',
   right: '34px',
   top: '2px'
-};
-
-const VerticalBottomStyle = {
-  verticalAlign: 'bottom'
 };
 
 const CategoryStyle = {

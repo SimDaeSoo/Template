@@ -3,7 +3,15 @@ import { withRouter } from 'next/router'
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Layout, Menu, Tag, Tooltip } from 'antd';
-import { FileTextOutlined, UserOutlined, MailOutlined, EnvironmentOutlined, MessageFilled, LinkOutlined } from '@ant-design/icons';
+import { FileTextOutlined, UserOutlined, MailOutlined, MessageFilled, LinkOutlined } from '@ant-design/icons';
+
+const user = {
+    id: 1,
+    username: '심대수(빅딜)',
+    email: 'tlaeotn123@naver.com',
+    link: 'https://github.com/SimDaeSoo',
+    message: '"Hello World?"'
+}
 
 @inject('environment', 'auth')
 @observer
@@ -31,22 +39,19 @@ class SiderLayout extends React.Component {
                 style={SHADOW_STYLE}
                 width='240px'
             >
-                <div style={{ position: 'absolute', top: 0, height: '334px', backgroundColor: '#181818' }}>
-                    <div style={{ width: '240px', height: '238px', padding: '2px 2px 0px 2px' }}>
-                        <div style={{ position: 'relative', width: '236px', height: '236px', borderRadius: '4px', overflow: 'hidden' }}>
-                            <img src='https://lh3.googleusercontent.com/a-/AOh14GhgMFeQX8lS_L_UYkLGDljRBOl_YA3FJyJNU2i38Q' style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                            <div style={{ position: 'absolute', width: '100%', bottom: 0, left: 0, padding: 2 }}>
-                                <Tag color='blue' icon={<UserOutlined />} style={{ maxWidth: '100%', marginRight: 0 }}>심대수(빅딜)</Tag>
-                            </div>
+                <div style={{ ...ProfileStyle, left: collapsed ? -240 : 0 }}>
+                    <div style={ThumbnailWrapperStyle}>
+                        <div style={ThumbnailStyle}>
+                            <img src='https://lh3.googleusercontent.com/a-/AOh14GhgMFeQX8lS_L_UYkLGDljRBOl_YA3FJyJNU2i38Q' style={ThumbnailImageStyle} />
                         </div>
                     </div>
-                    <div style={{ width: '240px', height: '94px', padding: '1px 2px 2px 2px', overflow: 'hidden', display: 'inline-block' }}>
-                        <Tag icon={<EnvironmentOutlined />} style={{ width: '100%', marginRight: 0 }}>SmartStudy</Tag>
-                        <Tag icon={<MailOutlined />} style={{ width: '100%', marginRight: 0 }}>tlaeotn123@gmail.com</Tag>
-                        <Tooltip title={`https://github.com/SimDaeSoo`}>
-                            <Tag icon={<LinkOutlined />} style={{ width: '100%', marginRight: 0 }}>https://github.com/SimDaeSoo</Tag>
+                    <div style={InfoStyle}>
+                        <Tag icon={<UserOutlined />} style={InfoRowStyle}>{user.username}</Tag>
+                        <Tag icon={<MailOutlined />} style={InfoRowStyle}>{user.email}</Tag>
+                        <Tooltip title={user.link}>
+                            <Tag icon={<LinkOutlined />} style={InfoRowStyle}>{user.link}</Tag>
                         </Tooltip>
-                        <Tag icon={<MessageFilled />} style={{ width: '100%', marginRight: 0 }}>"Hello World?"</Tag>
+                        <Tag color='blue' icon={<MessageFilled />} style={InfoRowStyle}>{user.message}</Tag>
                     </div>
                 </div>
 
@@ -66,9 +71,52 @@ class SiderLayout extends React.Component {
     }
 }
 
+const ProfileStyle = {
+    position: 'absolute',
+    top: 0,
+    height: '328px',
+    backgroundColor: '#181818',
+    transition: '.2s all'
+};
+
+const ThumbnailWrapperStyle = {
+    width: '240px',
+    height: '236px',
+    padding: '4px 4px 0px 4px'
+};
+
+const ThumbnailStyle = {
+    position: 'relative',
+    width: '232px',
+    height: '232px',
+    borderRadius: '4px',
+    overflow: 'hidden'
+};
+
+const ThumbnailImageStyle = {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover'
+};
+
+const InfoStyle = {
+    width: '240px',
+    height: '90px',
+    padding: '1px 2px 2px 2px',
+    overflow: 'hidden',
+    display: 'inline-block'
+};
+
+const InfoRowStyle = {
+    width: '100%',
+    marginRight: 0,
+    border: 'none',
+    backgroundColor: 'inherit'
+};
+
 const SHADOW_STYLE = {
     boxShadow: '0px 6px 6px 0px rgba(0, 0, 0, 0.3)',
-    paddingTop: '334px'
+    paddingTop: '328px'
 };
 
 export default withRouter(withTranslation('SiderLayout')(SiderLayout));

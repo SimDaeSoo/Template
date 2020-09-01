@@ -1,12 +1,12 @@
-import dynamic from 'next/dynamic';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
-import HydrateComponent from '../components/HydrateComponent';
-import { getInitializeAuthData } from '../stores/Auth';
-import DefaultLayout from '../layouts/DefaultLayout';
-import Loading from '../components/Loading';
-const ArticleViewer = dynamic(() => import('../components/ArticleViewer'), { ssr: false, loading: () => <Loading /> });
+import HydrateComponent from '../../components/HydrateComponent';
+import { getInitializeAuthData } from '../../stores/Auth';
+import DefaultLayout from '../../layouts/DefaultLayout';
+import ArticleCard from '../../components/ArticleCard';
 
+
+import { Pagination } from 'antd';
 const article = {
     id: 1,
     title: '초보를 위한 도커 안내서 - 도커란 무엇인가?',
@@ -123,30 +123,36 @@ resources (Sketch and Axure), to help people create their product prototypes bea
 
 @inject('environment', 'auth')
 @observer
-class New extends HydrateComponent {
+class New2 extends HydrateComponent {
     render() {
+        const { environment } = this.props;
         return (
             <DefaultLayout>
-                <div style={ArticleViewerStyle}>
-                    <ArticleViewer article={article} />
-                </div>
-            </DefaultLayout>
+                <div style={{ width: '100%', minHeight: '100%', padding: '5px', textAlign: 'center', display: 'flex', position: 'relative' }}>
+                    <div style={{ margin: 'auto', paddingBottom: '30px' }}>
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                        <ArticleCard article={article} />
+                    </div>
+                    <div style={{ width: environment.size === 'small' ? '100%' : 'calc(100% - 240px)', height: '40px', position: 'fixed', bottom: 0, left: environment.size === 'small' ? 0 : 240, backgroundColor: 'rgba(30,30,30,0.7)', padding: '4px' }}>
+                        <Pagination total={10} showSizeChanger={false} />
+                    </div>
+                </div >
+            </DefaultLayout >
         );
     }
 }
-
-const ArticleViewerStyle = {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    maxWidth: '1280px',
-    margin: 'auto'
-};
-
 export async function getServerSideProps(context) {
     const auth = await getInitializeAuthData(context, { routing: true });
 
     return { props: { initializeData: { auth, environment: { query: context.query } } } };
 }
 
-export default withTranslation('New')(New);
+export default withTranslation('New2')(New2);

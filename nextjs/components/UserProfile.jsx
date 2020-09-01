@@ -2,7 +2,7 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Tag, Avatar, Menu, Dropdown } from 'antd';
-import { MailOutlined, UserOutlined } from '@ant-design/icons';
+import { MailOutlined, UserOutlined, LinkOutlined, MessageFilled } from '@ant-design/icons';
 
 @inject('environment')
 @observer
@@ -13,14 +13,16 @@ class UserProfile extends React.Component {
         return (
             <Menu>
                 <Menu.Item disabled={true}>
-                    <Tag icon={<UserOutlined style={NoMarginStyle} />} color='blue' style={TagStyle}>{user.username}</Tag>
+                    <Tag icon={<UserOutlined style={NoMarginStyle} />} style={TagStyle}>{user.username}</Tag>
                 </Menu.Item>
                 <Menu.Item disabled={true}>
-                    <Tag icon={<MailOutlined style={NoMarginStyle} />} color='magenta' style={TagStyle}>{user.email}</Tag>
+                    <Tag icon={<MailOutlined style={NoMarginStyle} />} style={TagStyle}>{user.email}</Tag>
                 </Menu.Item>
-                <Menu.Item>
-                    <UserOutlined />
-                    {i18n.t('user')} {i18n.t('page')}
+                <Menu.Item disabled={true}>
+                    <Tag icon={<LinkOutlined style={NoMarginStyle} />} style={TagStyle}>{user.link}</Tag>
+                </Menu.Item>
+                <Menu.Item disabled={true}>
+                    <Tag icon={<MessageFilled style={NoMarginStyle} />} color='blue' style={TagStyle}>{user.message}</Tag>
                 </Menu.Item>
             </Menu>
         )
@@ -31,7 +33,9 @@ class UserProfile extends React.Component {
 
         return (
             <Dropdown overlay={this.menu} trigger={environment.size === 'small' ? 'click' : 'hover'}>
-                <Avatar shape="square" src={user.thumbnail} style={{ ...AvatarStyle, ...(style || {}) }} />
+                <a>
+                    <Avatar shape="square" src={user.thumbnail} style={{ ...AvatarStyle, ...(style || {}) }} />
+                </a>
             </Dropdown>
         );
     }
