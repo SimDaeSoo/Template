@@ -24,7 +24,7 @@ class SelectLanguage extends React.Component {
 }
 
 const DefaultStyle = {
-    width: '90px',
+    width: '70px',
     textAlign: 'center'
 };
 

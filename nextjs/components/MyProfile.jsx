@@ -1,8 +1,8 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
-import { Tag, Avatar, Menu, Dropdown } from 'antd';
-import { ExportOutlined, MailOutlined, UserOutlined, SettingOutlined, LinkOutlined, MessageFilled, LockOutlined } from '@ant-design/icons';
+import { Tag, Avatar, Menu, Dropdown, Button } from 'antd';
+import { ExportOutlined, MailOutlined, UserOutlined, SettingOutlined, LinkOutlined, MessageFilled, LockOutlined, HomeOutlined } from '@ant-design/icons';
 
 @inject('auth', 'environment')
 @observer
@@ -31,6 +31,10 @@ class MyProfile extends React.Component {
                     <Tag icon={<MessageFilled style={NoMarginStyle} />} color='blue' style={TagStyle}>{auth.user.message}</Tag>
                 </Menu.Item>
                 <Menu.Item>
+                    <HomeOutlined />
+                    {i18n.t('my')} {i18n.t('home')} {i18n.t('page')}
+                </Menu.Item>
+                <Menu.Item>
                     <SettingOutlined />
                     {i18n.t('settings')}
                 </Menu.Item>
@@ -43,14 +47,28 @@ class MyProfile extends React.Component {
     }
 
     render() {
-        const { auth, environment, style } = this.props;
+        const { auth, environment, style, showName } = this.props;
 
         return (
-            <Dropdown overlay={this.menu} trigger={environment.size === 'small' ? 'click' : 'hover'}>
-                <a>
-                    <Avatar shape="square" src={auth.user.thumbnail} style={{ ...AvatarStyle, ...(style || {}) }} />
-                </a>
-            </Dropdown>
+            <>
+                {
+                    !showName &&
+                    <Dropdown overlay={this.menu} trigger={environment.size === 'small' ? 'click' : 'hover'}>
+                        <a>
+                            <Avatar shape="square" src={auth.user.thumbnail} style={{ ...AvatarStyle, ...(style || {}) }} />
+                        </a>
+                    </Dropdown>
+                }
+                {
+                    showName &&
+                    <Dropdown overlay={this.menu} trigger={environment.size === 'small' ? 'click' : 'hover'}>
+                        <Button icon={<UserOutlined style={{ marginRight: '4px' }} />} style={{ position: 'relative', verticalAlign: 'bottom', paddingLeft: '42px', marginRight: '2px', ...(style || {}) }}>
+                            <Avatar shape="square" src={auth.user.thumbnail} style={{ ...AvatarStyle, position: 'absolute', left: '-3px', top: '-1px' }} />
+                            {auth.user.username}
+                        </Button>
+                    </Dropdown>
+                }
+            </>
         );
     }
 }

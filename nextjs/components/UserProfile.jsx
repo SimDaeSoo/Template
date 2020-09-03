@@ -2,7 +2,7 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Tag, Avatar, Menu, Dropdown } from 'antd';
-import { MailOutlined, UserOutlined, LinkOutlined, MessageFilled } from '@ant-design/icons';
+import { MailOutlined, UserOutlined, LinkOutlined, MessageFilled, HomeOutlined } from '@ant-design/icons';
 
 @inject('environment')
 @observer
@@ -23,6 +23,10 @@ class UserProfile extends React.Component {
                 </Menu.Item>
                 <Menu.Item disabled={true}>
                     <Tag icon={<MessageFilled style={NoMarginStyle} />} color='blue' style={TagStyle}>{user.message}</Tag>
+                </Menu.Item>
+                <Menu.Item>
+                    <HomeOutlined />
+                    {i18n.t('user')} {i18n.t('home')} {i18n.t('page')}
                 </Menu.Item>
             </Menu>
         )

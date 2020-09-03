@@ -1,8 +1,8 @@
 {
     "login": "Login",
     "logout": "Logout",
-    "korean": "한국어",
-    "english": "English",
+    "korean": "KO",
+    "english": "EN",
     "pageTitle": "Template",
     "pageDescription1": "Default template for creating web service",
     "pageDescription2": "Make your web service easy",

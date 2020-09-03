@@ -3,7 +3,7 @@ import { withRouter } from 'next/router'
 import { observer, inject } from 'mobx-react';
 import { withTranslation } from "react-i18next";
 import { Layout, Menu, Tag, Tooltip } from 'antd';
-import { FileTextOutlined, UserOutlined, MailOutlined, MessageFilled, LinkOutlined } from '@ant-design/icons';
+import { FileTextOutlined, UserOutlined, MailOutlined, MessageFilled, LinkOutlined, SettingOutlined, FolderOutlined } from '@ant-design/icons';
 
 const user = {
     id: 1,
@@ -39,6 +39,29 @@ class SiderLayout extends React.Component {
                 style={SHADOW_STYLE}
                 width='240px'
             >
+                <Menu mode="inline" selectedKeys={[this.pathname]}>
+                    <Menu.Item key="/" icon={<FileTextOutlined />} onClick={() => this.linkTo('/')}>
+                        {i18n.t('home')} {i18n.t('page')}
+                    </Menu.Item>
+                    <Menu.Item key="/new" icon={<FileTextOutlined />} onClick={() => this.linkTo('/new')}>
+                        {i18n.t('new')} {i18n.t('page')}
+                    </Menu.Item>
+                    <Menu.Item key="/new2" icon={<FileTextOutlined />} onClick={() => this.linkTo('/new2')}>
+                        {i18n.t('new')}2 {i18n.t('page')}
+                    </Menu.Item>
+
+                    <Menu.SubMenu key="sub1" icon={<FolderOutlined />} title="Navigation One">
+                        <Menu.Item key="5">{i18n.t('new')} {i18n.t('page')}</Menu.Item>
+                        <Menu.Item key="6">{i18n.t('new')} {i18n.t('page')}</Menu.Item>
+                        <Menu.Item key="7">{i18n.t('new')} {i18n.t('page')}</Menu.Item>
+                        <Menu.Item key="8">{i18n.t('new')} {i18n.t('page')}</Menu.Item>
+                    </Menu.SubMenu>
+
+                    {/* owner 일때 */}
+                    <Menu.Item key="/settings" icon={<SettingOutlined />}>
+                        {i18n.t('settings')}
+                    </Menu.Item>
+                </Menu>
                 <div style={{ ...ProfileStyle, left: collapsed ? -240 : 0 }}>
                     <div style={ThumbnailWrapperStyle}>
                         <div style={ThumbnailStyle}>
@@ -54,19 +77,7 @@ class SiderLayout extends React.Component {
                         <Tag color='blue' icon={<MessageFilled />} style={InfoRowStyle}>{user.message}</Tag>
                     </div>
                 </div>
-
-                <Menu mode="inline" selectedKeys={[this.pathname]}>
-                    <Menu.Item key="/" icon={<FileTextOutlined />} onClick={() => this.linkTo('/')}>
-                        {i18n.t('home')} {i18n.t('page')}
-                    </Menu.Item>
-                    <Menu.Item key="/new" icon={<FileTextOutlined />} onClick={() => this.linkTo('/new')}>
-                        {i18n.t('new')} {i18n.t('page')}
-                    </Menu.Item>
-                    <Menu.Item key="/new2" icon={<FileTextOutlined />} onClick={() => this.linkTo('/new2')}>
-                        {i18n.t('new')}2 {i18n.t('page')}
-                    </Menu.Item>
-                </Menu>
-            </Layout.Sider>
+            </Layout.Sider >
         )
     }
 }

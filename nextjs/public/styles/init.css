@@ -47,11 +47,6 @@ body,
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.ant-layout-sider {
-    z-index: 6;
-    background-color: #141414;
-}
-
 .ant-menu-inline,
 .ant-menu-vertical,
 .ant-menu-vertical-left {
@@ -75,11 +70,22 @@ body,
 }
 
 .ant-layout-sider {
-    position: fixed;
+    z-index: 6;
+    position: absolute;
+    background-color: #141414;
     height: 100%;
 }
 
+.ant-layout-sider ul {
+    position:'relative'
+}
+
+.ant-layout-sider ul li {
+    position:'relative'
+}
+
 .ant-layout-sider-children {
+    position:'relative';
     overflow-y: auto;
     overflow-x: hidden;
 }
