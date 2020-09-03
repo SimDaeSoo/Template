@@ -24,12 +24,13 @@ body,
 .ant-layout-sider-zero-width-trigger.ant-layout-sider-zero-width-trigger-left {
     border: none;
     top: 0;
-    right: -36px;
+    right: -38px;
     width: 36px;
     height: 36px;
     line-height: 36px;
     z-index: -1;
     font-size: 1.6em;
+    background: none;
 }
 
 .ant-layout {
@@ -91,7 +92,7 @@ body,
 }
 
 .ant-layout-sider-zero-width-trigger:hover {
-    background-color: #1F1F1F
+    background: none;
 }
 
 .ant-layout-content {

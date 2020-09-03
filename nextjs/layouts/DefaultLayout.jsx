@@ -73,7 +73,7 @@ const HeaderStyle = {
     height: '36px',
     zIndex: 4,
     textAlign: 'right',
-    backgroundColor: '#1F1F1F',
+    backgroundColor: 'rgba(33,33,33,0.8)',
     position: 'fixed',
     padding: '2px',
     top: 0,
