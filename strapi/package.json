@@ -8,7 +8,7 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "cli": "NODE_ENV=cli node scripts/cli.js"
+    "cli": "PORT=1338 node scripts/cli.js"
   },
   "devDependencies": {},
   "dependencies": {

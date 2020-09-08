@@ -26,16 +26,16 @@ services:
   strapi:
     build:
       context: .
-      dockerfile: ./compose/strapi/Dockerfile-dev
-    command: sh /start-dev.sh
+      dockerfile: ./compose/strapi/Dockerfile
+    command: sh /start.sh
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
       - DATABASE_HOST=mysql
       - DATABASE_PORT=3306
       - DATABASE_NAME=strapi
       - DATABASE_USERNAME=daesoo94
       - DATABASE_PASSWORD=vndtkstla2
-      - BASE_URL=http://localhost
+      - BASE_URL=
     depends_on:
       - mysql
     volumes:
@@ -45,8 +45,8 @@ services:
   nextjs:
     build:
       context: .
-      dockerfile: ./compose/nextjs/Dockerfile-dev
-    command: sh /start-dev.sh
+      dockerfile: ./compose/nextjs/Dockerfile
+    command: sh /start.sh
     environment:
       - SSR_API_URL=http://strapi:1337
     volumes:
