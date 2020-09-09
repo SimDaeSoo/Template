@@ -1,0 +1,51 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: node:lts
+    working_directory: ~/template
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "nextjs/package.json" }}
+      - run:
+          name : yarn install
+          command : cd nextjs && yarn install
+      - run:
+          name : yarn build
+          command : cd nextjs && yarn build
+      - run:
+          name : yarn install
+          command : cd strapi && yarn install
+      - run:
+          name : yarn build
+          command : cd strapi && yarn build
+      - save_cache:
+          key: dependency-cache-{{ checksum "nextjs/package.json" }}
+          paths:
+            - node_modules
+  deploy:
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.12
+      - run:
+          name: Make Docker
+          command: |
+            chmod +x deployment/deploy.sh
+            deployment/deploy.sh
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+  release:
+    jobs:
+      - deploy:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
