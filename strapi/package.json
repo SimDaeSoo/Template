@@ -12,8 +12,10 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "lodash": "^4.17.20",
     "commander": "^6.0.0",
+    "knex": "<0.20.0",
+    "lodash": "^4.17.20",
+    "mysql": "latest",
     "strapi": "3.1.4",
     "strapi-admin": "3.1.4",
     "strapi-connector-bookshelf": "3.1.4",
@@ -22,9 +24,8 @@
     "strapi-plugin-email": "3.1.4",
     "strapi-plugin-upload": "3.1.4",
     "strapi-plugin-users-permissions": "3.1.4",
-    "strapi-utils": "3.1.4",
-    "knex": "<0.20.0",
-    "mysql": "latest"
+    "strapi-provider-upload-aws-s3": "^3.1.4",
+    "strapi-utils": "3.1.4"
   },
   "author": {
     "name": "A Strapi developer"
