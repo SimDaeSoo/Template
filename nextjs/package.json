@@ -13,7 +13,7 @@
     "@toast-ui/editor-plugin-color-syntax": "^1.0.1",
     "@toast-ui/react-editor": "^2.3.1",
     "antd": "^4.6.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-preset-react-app": "^9.1.2",
     "highlight.js": "^10.1.2",
     "i18next": "^19.6.2",
