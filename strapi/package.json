@@ -14,7 +14,7 @@
   "dependencies": {
     "commander": "^6.0.0",
     "knex": "<0.20.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "mysql": "latest",
     "strapi": "3.1.4",
     "strapi-admin": "3.1.4",
